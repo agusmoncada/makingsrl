@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="project_task_type_percent_allocation" model="ir.ui.view">
+            <field name="name">project_task_type_percent_allocation</field>
+            <field name="inherit_id" ref="project.task_type_edit"/>
+            <field name="model">project.task.type</field>
+            <field name="arch" type="xml">
+                <field name="project_ids" position="after">
+                    <field name="max_percent_allocation"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

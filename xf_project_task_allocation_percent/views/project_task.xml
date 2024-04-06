@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="project_task_assignment_units" model="ir.ui.view">
+            <field name="name">project_task_assignment_units</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="model">project.task</field>
+            <field name="arch" type="xml">
+                <field name="user_ids" position="after">
+                    <label for="assignment_units"/>
+                    <div class="d-inline-flex">
+                        <field name="assignment_units"/>
+                        <span>%</span>
+                    </div>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

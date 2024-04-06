@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ir_cron_recompute_effective_hours_spent" model="ir.cron">
+            <field name="name">Time Tracker: Recompute spent hours for unclosed time entries</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model_id" ref="model_project_task_time_entry"/>
+            <field name="code">model._recompute_effective_hours_spent_cron()</field>
+            <field name="state">code</field>
+        </record>
+    </data>
+</odoo>

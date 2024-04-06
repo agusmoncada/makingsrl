@@ -1,0 +1,143 @@
+<div class="container">
+    <!-- Title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="oe_slogan">
+                <h2 class="oe_slogan">Automatic Time Tracker for Project Tasks</h2>
+                <div>
+                    This module introduces automated time tracking for project tasks,
+                    effortlessly capturing the time spent on tasks as soon as
+                    the assigned user alters the task stage or the kanban state.<br/>
+                    It streamlines the process, making it a hassle-free experience for users.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h4>Enable Task Time Tracker</h4>
+            <p>
+                Following the module installation,
+                project manager gain ability to enable time tracking for tasks.
+            </p>
+            <ol>
+                <li>
+                    The first option enables automated time tracking.
+                    <div>
+                        Whenever a task's stage, assignees, assignment units,
+                        or kanban state changes, the system generates a new time entry.
+                    </div>
+                </li>
+                <li>
+                    The second option allows manual editing of time entries.
+                    <div>
+                        Project managers can choose whether to permit or restrict
+                        the modification of tracked time entries.
+                    </div>
+                </li>
+            </ol>
+            <p>
+                <img class="oe_screenshot" src="project_settings.png"
+                     alt="Project Setting - Allow Time Tracking" width="100%"/>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h4>How the system knows if the task is in progress or not</h4>
+            <p>
+                After installing the module you can set
+                <a href="https://apps.odoo.com/apps/modules/16.0/xf_project_task_internal_state/">
+                    internal state
+                </a>
+                to each task stage.
+            </p>
+            <p>
+                These internal states serve as indicators,
+                distinguishing whether a task is not started, in progress, suspended, or completed.
+            </p>
+            <p>
+                <img class="oe_screenshot" src="task_stages.png"
+                     alt="Project Task Stages" width="100%"/>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h4>How time tracker works</h4>
+            <p>
+                Whenever a task's stage or kanban state changes, a new time entry is generated.
+                Additionally, reassignment to different users or changes in assignment units trigger new entries.
+            </p>
+            <p>
+                The Time Tracker calculates the duration and effective hours spent on each entry,
+                subsequently summing up these values.
+            </p>
+            <p>
+                <img class="oe_screenshot" src="task_time_tracking.png"
+                     alt="Task Time Tracking" width="100%"/>
+            </p>
+            <p>
+                When there are multiple assignees, the time entry will be logged only for the user who initiated the
+                changes.
+            </p>
+            <p>
+                <img class="oe_screenshot" src="task_time_tracking_2.png"
+                     alt="Task Time Tracking" width="100%"/>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h4>How the system computes effective spent hours</h4>
+            <p>
+                The calculation of effective spent hours is based on the working time of each employee.
+            </p>
+            <p>
+                Three key parameters contribute to this value:<br/>
+                (1) working time,<br/>
+                (2) public holidays and<br/>
+                (3) time off for particular user<br/>
+            </p>
+            <p>
+                <img class="oe_screenshot" src="working_time_form.png"
+                     alt="Working Time Form" width="100%"/>
+            </p>
+            <p>
+                There is no need to manually pause the tracker
+                when leaving work at the end of the day or for weekends.
+                The system will not account for non-working hours.
+            </p>
+            <p>
+                Even if an employee goes on vacation without pausing their task,
+                the system will simply skip the vacation time,
+                provided that this vacation time is added in the system.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            Our module simplifies time tracking by automatically recording task progress and hours spent. It creates
+            time entries when task stages or assignees change, and allows for manual adjustments. The calculations
+            consider working hours, holidays, and time off. This tool streamlines project time management for your
+            convenience.
+        </div>
+    </div>
+
+
+    <!-- Contacts -->
+    <div class="row">
+        <div class="col-12 oe_spaced">
+            <div class="text-center">
+                <img src="https://erp.xfanis.dev/web/logo/xf_project_task_time_tracking/16" alt="Logo" width="200">
+            </div>
+            <div class="oe_slogan text-center">
+                Contact me for Support, Customization, Implementation:<br/>
+                <b>Email</b>: <a href="mailto:xfanis.dev@gmail.com">xfanis.dev@gmail.com</a><br/>
+                <b>Telegram</b>: https://t.me/xfanis<br/>
+                <b>Twitter</b>: https://twitter.com/XFanis_Dev<br/>
+            </div>
+        </div>
+    </div>
+</div>

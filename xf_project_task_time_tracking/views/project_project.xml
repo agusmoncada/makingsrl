@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="edit_project_task_time_tracking" model="ir.ui.view">
+        <field name="name">edit_project_task_time_tracking</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <group name="group_documents_analytics" position="before">
+                <group name="group_task_time_tracking" string="Task Time Tracking" col="1"
+                       class="row mt16 o_settings_container">
+                    <div>
+                        <div class="o_setting_box" id="allow_time_tracking_setting">
+                            <div class="o_setting_left_pane">
+                                <field name="allow_time_tracking"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="allow_time_tracking"/>
+                                <div class="text-muted">
+                                    Enable auto time-tracking for tasks
+                                </div>
+                            </div>
+                        </div>
+                        <div class="o_setting_box mt-4" id="allow_manual_time_tracking_setting">
+                            <div class="o_setting_left_pane">
+                                <field name="allow_manual_time_tracking"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="allow_manual_time_tracking"/>
+                                <div class="text-muted">
+                                    Enable manual editing of tracked time entries and the ability to add new lines
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
