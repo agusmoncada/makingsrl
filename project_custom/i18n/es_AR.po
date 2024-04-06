@@ -1,0 +1,96 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* project_custom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-04 23:35+0000\n"
+"PO-Revision-Date: 2024-04-04 23:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: project_custom
+#: model:ir.model.fields.selection,name:project_custom.selection__project_task__mkg_priority__urgent
+msgid "1. Urgent"
+msgstr "1. Urgente"
+
+#. module: project_custom
+#: model:ir.model.fields.selection,name:project_custom.selection__project_task__mkg_priority__high
+msgid "2. High"
+msgstr "2. Alta"
+
+#. module: project_custom
+#: model:ir.model.fields.selection,name:project_custom.selection__project_task__mkg_priority__half
+msgid "3. Half"
+msgstr "3. Media"
+
+#. module: project_custom
+#: model:ir.model.fields.selection,name:project_custom.selection__project_task__mkg_priority__low
+msgid "4. Low"
+msgstr "4. Baja"
+
+#. module: project_custom
+#: model:ir.model.fields,field_description:project_custom.field_project_task__compliant_quality
+msgid "Compliant Quality"
+msgstr "Conforme Calidad"
+
+#. module: project_custom
+#: model:ir.model.fields,field_description:project_custom.field_project_task__delivered_to_quality
+msgid "Delivered to quality"
+msgstr "Entregado a calidad"
+
+#. module: project_custom
+#: model:ir.model.fields,field_description:project_custom.field_project_task__mkg_first_operator1
+msgid "First Operator1"
+msgstr "Operador 1"
+
+#. module: project_custom
+#: model:ir.model.fields,field_description:project_custom.field_project_task__mkg_first_operator2
+msgid "First Operator2"
+msgstr "Operador 2"
+
+#. module: project_custom
+#: model:ir.model.fields,field_description:project_custom.field_project_task__mkg_first_operator3
+msgid "First Operator3"
+msgstr "Operador 3"
+
+#. module: project_custom
+#: model:ir.model.fields,field_description:project_custom.field_project_task__mkg_first_operator4
+msgid "First Operator4"
+msgstr "Operador 4"
+
+#. module: project_custom
+#: model:ir.model.fields,field_description:project_custom.field_project_task__observed
+msgid "Observed"
+msgstr "Observado"
+
+#. module: project_custom
+#: model:ir.model.fields,field_description:project_custom.field_project_task__mkg_priority
+msgid "Priority"
+msgstr "Prioridad"
+
+#. module: project_custom
+#: model:ir.model.fields,field_description:project_custom.field_project_task__received_in_quality
+msgid "Received in quality"
+msgstr "Recibido en calidad"
+
+#. module: project_custom
+#: model:ir.model.fields,field_description:project_custom.field_project_task__sent_to_billing
+msgid "Sent to billing"
+msgstr "Enviado a facturación"
+
+#. module: project_custom
+#: model:ir.model,name:project_custom.model_project_task
+msgid "Task"
+msgstr "Tarea"
+
+#. module: project_custom
+#: model:ir.model.fields,field_description:project_custom.field_project_task__technical_report
+msgid "Technical Report"
+msgstr "Tecnico Informe"

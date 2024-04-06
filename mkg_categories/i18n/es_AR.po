@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mkg_categories
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-04 23:40+0000\n"
+"PO-Revision-Date: 2024-04-04 23:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mkg_categories
+#: model:ir.model.fields,field_description:mkg_categories.field_mkg_categories__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: mkg_categories
+#: model:ir.model.fields,field_description:mkg_categories.field_mkg_categories__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: mkg_categories
+#: model:ir.model.fields,field_description:mkg_categories.field_mkg_categories__description
+msgid "Description"
+msgstr "Descripcion"
+
+#. module: mkg_categories
+#: model:ir.model.fields,field_description:mkg_categories.field_mkg_categories__display_name
+msgid "Display Name"
+msgstr "Nombre"
+
+#. module: mkg_categories
+#: model:ir.model.fields,field_description:mkg_categories.field_mkg_categories__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mkg_categories
+#: model:ir.model.fields,field_description:mkg_categories.field_mkg_categories__write_uid
+msgid "Last Updated by"
+msgstr "Ultima actualizacion por"
+
+#. module: mkg_categories
+#: model:ir.model.fields,field_description:mkg_categories.field_mkg_categories__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualizacion el"
+
+#. module: mkg_categories
+#: model:ir.actions.act_window,name:mkg_categories.mkg_categories_action_window
+#: model:ir.model,name:mkg_categories.model_mkg_categories
+#: model:ir.model.fields,field_description:mkg_categories.field_project_task__mkg_categories_id
+#: model:ir.ui.menu,name:mkg_categories.mkg_categories_menu
+msgid "Making Categories"
+msgstr "Categorias Making"
+
+#. module: mkg_categories
+#: model:ir.model.fields,field_description:mkg_categories.field_mkg_categories__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: mkg_categories
+#: model:ir.model.fields,help:mkg_categories.field_project_task__mkg_categories_id
+msgid "Select the Making Category."
+msgstr "Seleccione la Categoria Making"
+
+#. module: mkg_categories
+#: model:ir.model,name:mkg_categories.model_project_task
+msgid "Task"
+msgstr "Tarea"
