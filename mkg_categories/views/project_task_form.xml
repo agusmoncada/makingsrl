@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+            <record id="project_task_form_categories" model="ir.ui.view">
+                <field name="name">project.task.form.categories</field>
+                <field name="model">project.task</field>
+                <field name="inherit_id" ref="project.view_task_form2"/>
+                <field name="arch" type="xml">
+                    <field name="milestone_id" position="before">
+                        <field name="mkg_categories_id"/>
+                    </field>
+                </field>
+            </record>
+            <record id="project_task_view_tree_main_base_inherit" model="ir.ui.view">
+                <field name="name">project.task.view.tree.main.base.inherit</field>
+                <field name="model">project.task</field>
+                <field name="inherit_id" ref="project.project_task_view_tree_main_base"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//tree" position="inside">
+                        <field name="mkg_categories_id"/>
+                    </xpath>
+                </field>
+            </record>
+   </data>
+</odoo>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="option_pstn" model="product.type.service">
+            <field name="name">PSTN</field>
+            <field name="description">Linea cobre</field>
+        </record>
+        <record id="option_pstnadsl" model="product.type.service">
+            <field name="name">PSTNADSL</field>
+            <field name="description">Linea cobre+adsl</field>
+        </record>
+        <record id="option_adsl" model="product.type.service">
+            <field name="name">ADSL</field>
+            <field name="description">Servicio adsl sobre cobre, linea existente</field>
+        </record>
+        <record id="option_ftth" model="product.type.service">
+            <field name="name">FTTH</field>
+            <field name="description">FTTH</field>
+        </record>
+        <record id="option_email" model="product.type.service">
+            <field name="name">EMAIL</field>
+            <field name="description">Cuentas de email</field>
+        </record>
+        <record id="option_hosting" model="product.type.service">
+            <field name="name">HOSTING</field>
+            <field name="description">Servicio de hosteo web</field>
+        </record>
+        <record id="option_voip" model="product.type.service">
+            <field name="name">VOIP</field>
+            <field name="description">Linea IP</field>
+        </record>
+
+    </data>
+</odoo>
