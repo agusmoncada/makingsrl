@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
@@ -44,3 +44,14 @@ class ProjectTask(models.Model):
     delivered_to_quality = fields.Boolean(string="Delivered to quality", default=False)
     received_in_quality = fields.Boolean(string="Received in quality", default=False)
     compliant_quality = fields.Boolean(string="Compliant Quality", default=False)
+
+    name = fields.Char(default="New")
+
+    @api.model
+    def create(self, vals):
+        record = super(ProjectTask, self).create(vals)
+        if record.project_id.name == 'OP. MAKING' and record.stage_id.name == 'INGRESO DE PIEZAS':
+            record.write({'name': self.env['ir.sequence'].next_by_code('ot_name_general')})
+        if record.project_id.name == 'OP. RKMN' and record.stage_id.name == 'GENERACIÓN OT':
+            record.write({'name': self.env['ir.sequence'].next_by_code('ot_name_rak')})
+        return record
