@@ -2,11 +2,11 @@
 {
     'name': "Project Custom",
     'summary': """
-        To complete
+        Module that adds extra customizations required by Making in the project module
     """,
-    'author': "Franco Corvalan",
+    'author': "SalusERP",
     "maintainers": ["franco0310"],
-    "website": "",
+    "website": "https://www.saluserp.com/",
     "license": "AGPL-3",
     "category": "Project",
     "version": "17.0.0.0.0",

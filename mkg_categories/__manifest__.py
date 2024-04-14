@@ -2,11 +2,13 @@
 {
     'name': "MKG Categories",
     'summary': """
-        To complete
+        Module that adds Making categories in the creation of tasks, 
+        in the projects module. Also add an ABM in Project/Configuration 
+        for administration.
     """,
-    'author': "Franco Corvalan",
+    'author': "SalusERP",
     "maintainers": ["franco0310"],
-    "website": "",
+    "website": "https://www.saluserp.com/",
     "license": "AGPL-3",
     "category": "Project",
     "version": "17.0.0.0.0",

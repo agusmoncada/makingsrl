@@ -2,13 +2,15 @@
 {
     'name': "MKG We Send",
     'summary': """
-        Remittance Module
+        Module to support referrals within the projects module. 
+        Includes an ABM for administration, and possibility of 
+        creation from Tasks view.
     """,
     'author': "SalusERP",
     "maintainers": ["franco0310"],
     "website": "https://www.saluserp.com/",
     "license": "AGPL-3",
-    #"category": "Project",
+    "category": "Project",
     "version": "17.0.0.0.0",
     "installable": True,
     "application": False,

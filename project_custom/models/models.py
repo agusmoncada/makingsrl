@@ -8,7 +8,7 @@ class ProjectTask(models.Model):
         ('high', '2. High'),
         ('half', '3. Half'),
         ('low', '4. Low'),
-    ], string='Priority', default='half')
+    ], string='Priority', default='')
 
     mkg_first_operator1 = fields.Many2one(
         'hr.employee', 
