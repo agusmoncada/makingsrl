@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="mkg_we_send_view_form" model="ir.ui.view">
+            <field name="name">mkg.we.send.view.form</field>
+            <field name="model">mkg.we.send</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="description"/>
+                            <field name="name"/>
+                            <!-- Agrega otros campos según sea necesario -->
+                        </group>
+                        <notebook>
+                        <page string="Tareas Relacionadas">
+                            <!-- Campo Many2many que muestra las tareas en una vista de lista -->
+                            <field name="task_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="partner_id"/>
+                                    <field name="project_id"/>
+                                    <field name="user_ids" widget="many2many_tags"/>
+                                    <field name="effective_hours"/>
+                                    <field name="activity_ids" widget="many2many_tags"/>
+                                    <field name="create_date"/>
+                                    <field name="date_last_stage_update"/>
+                                    <field name="stage_id"/>
+                                    <!-- <field name="kanban_state" widget="kanban_state_selection"/> -->
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="mkg_we_send_view_tree" model="ir.ui.view">
+            <field name="name">mkg.we.send.view.tree</field>
+              <field name="model">mkg.we.send</field>
+              <field name="arch" type="xml">
+                <tree>
+                  <field name="description"/>
+                  <field name="name"/>
+                  <field name="task_ids" widget="many2many_tags"/>
+                  <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mkg_we_send_action_window" model="ir.actions.act_window">
+            <field name="name">Making We Send</field>
+            <field name="res_model">mkg.we.send</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="mkg_we_send_menu"
+                name="Making We Send"
+		            action="mkg_we_send_action_window"
+                parent="project.menu_main_pm"
+                sequence="99"/>
+</odoo>

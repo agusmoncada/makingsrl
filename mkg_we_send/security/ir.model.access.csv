@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mkg_we_send_mkg_we_send,mkg_we_send.mkg_we_send,model_mkg_we_send,base.group_user,1,1,1,1

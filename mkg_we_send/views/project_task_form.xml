@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+            <record id="project_task_form_we_send" model="ir.ui.view">
+                <field name="name">project.task.form.we.send</field>
+                <field name="model">project.task</field>
+                <field name="inherit_id" ref="project.view_task_form2"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//notebook" position="inside">
+                            <page string="Remitos Asociados">
+                                <field name="mkg_we_send_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="description"/>
+                                        <field name="task_ids" widget="many2many_tags"/>
+                                        <field name="create_date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                    </xpath>
+                </field>
+            </record>
+            <!-- <record id="project_task_view_tree_main_base_inherit" model="ir.ui.view">
+                <field name="name">project.task.view.tree.main.base.inherit</field>
+                <field name="model">project.task</field>
+                <field name="inherit_id" ref="project.project_task_view_tree_main_base"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//tree" position="inside">
+                        <field name="mkg_categories_id"/>
+                    </xpath>
+                </field>
+            </record> -->
+   </data>
+</odoo>
