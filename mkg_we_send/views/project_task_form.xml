@@ -10,7 +10,8 @@
                             <page string="Remitos Asociados">
                                 <field name="mkg_we_send_ids">
                                     <tree>
-                                        <field name="name"/>
+                                        <!-- <field name="name"/> -->
+                                        <field name="invoice_number"/>
                                         <field name="description"/>
                                         <field name="task_ids" widget="many2many_tags"/>
                                         <field name="create_date"/>

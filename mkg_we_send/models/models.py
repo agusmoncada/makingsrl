@@ -4,7 +4,8 @@ class MKGWeSend(models.Model):
     _name = 'mkg.we.send'
     _description = 'Making We Send'
 
-    name = fields.Char(string='Invoice Number', required=True)
+    name = fields.Char(string='Name', required=True, default="remito")
+    invoice_number = fields.Char(string='Invoice Number')
     description = fields.Char(string='Description', default=lambda self: self._default_description())
     task_ids = fields.Many2many('project.task', string='Tasks')
 
