@@ -13,30 +13,30 @@ class ProjectTask(models.Model):
     mkg_first_operator1 = fields.Many2one(
         'hr.employee', 
         string='First Operator1',
-        domain=[('job_id.name', '=', 'Operador')]
+        domain=[('department_id.name', '=', 'Operaciones')]
     )
 
     mkg_first_operator2 = fields.Many2one(
         'hr.employee', 
         string='First Operator2',
-        domain=[('job_id.name', '=', 'Operador')]
+        domain=[('department_id.name', '=', 'Operaciones')]
     )
 
     mkg_first_operator3 = fields.Many2one(
         'hr.employee', 
         string='First Operator3',
-        domain=[('job_id.name', '=', 'Operador')]
+        domain=[('department_id.name', '=', 'Operaciones')]
     )
 
     mkg_first_operator4 = fields.Many2one(
         'hr.employee', 
         string='First Operator4',
-        domain=[('job_id.name', '=', 'Operador')]
+        domain=[('department_id.name', '=', 'Operaciones')]
     )
     technical_report = fields.Many2one(
         'hr.employee', 
         string='Technical Report',
-        domain=[('job_id.name', '=', 'Informes')]
+        domain=[('department_id.name', '=', 'Operaciones')]
     )
 
     observed = fields.Boolean(string="Observed", default=False)
