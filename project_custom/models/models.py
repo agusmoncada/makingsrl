@@ -36,7 +36,7 @@ class ProjectTask(models.Model):
     technical_report = fields.Many2one(
         'hr.employee', 
         string='Technical Report',
-        domain=[('department_id.name', '=', 'Operaciones')]
+        domain=[('department_id.name', '=', 'Informe')]
     )
 
     observed = fields.Boolean(string="Observed", default=False)
