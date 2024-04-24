@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <page name="description_page" position="after">
                 <page name="time_tracking" string="Time Tracking"
-                      attrs="{'invisible':[('allow_time_tracking', '=', False)]}">
+                      invisible="not allow_time_tracking">
                     <group>
                         <group>
                             <field name="sum_tracked_duration" widget="float_time" />
@@ -18,7 +18,7 @@
                     </group>
                     <field name="time_entry_ids" nolabel="1" colspan="2"
                            context="{'default_name': name}"
-                           attrs="{'readonly':[('allow_manual_time_tracking', '=', False)]}">
+                           readonly="not allow_manual_time_tracking">
                         <tree editable="bottom">
                             <field name="name"/>
                             <field name="user_id" widget="many2one_avatar_user"/>

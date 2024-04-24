@@ -171,10 +171,10 @@ class ProjectTask(models.Model):
         store=True,
     )
 
-    @api.depends('internal_state', 'kanban_state')
+    @api.depends('internal_state', 'stage_id')
     def _compute_is_in_progress(self):
         for task in self:
-            task.is_in_progress = task.internal_state == OPEN and task.kanban_state == 'normal'
+            task.is_in_progress = task.internal_state == OPEN and task.stage_id == 'normal'
 
     @api.depends('time_entry_ids.effective_hours_spent')
     def _sum_tracked_effective_hours_spent(self):
@@ -190,7 +190,7 @@ class ProjectTask(models.Model):
         self.update_time_entries(init_values)
         return super(ProjectTask, self)._track_subtype(init_values)
 
-    @api.constrains('user_ids', 'stage_id', 'kanban_state')
+    @api.constrains('user_ids', 'stage_id')
     def _check_assignees(self):
         for task in self:
             if task.is_in_progress and not task.user_ids:
