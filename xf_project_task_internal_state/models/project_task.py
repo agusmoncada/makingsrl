@@ -26,7 +26,7 @@ class ProjectTask(models.Model):
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
         """ Override read_group to always display all states. """
-        if groupby and groupby[0] == 'internal_state' and 'kanban_state' not in groupby:
+        if groupby and groupby[0] == 'internal_state' and 'stage_id' not in groupby:
             return self._read_group_by_internal_state(domain)
         else:
             return super(ProjectTask, self).read_group(domain, fields, groupby, offset, limit, orderby, lazy)
