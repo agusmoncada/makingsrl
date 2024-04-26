@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_task_search_form_internal_state" model="ir.ui.view">
+        <field name="name">view_task_search_form_internal_state</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <filter name="stage" position="after">
+                <filter string="Internal State" name="internal_state" context="{'group_by': 'internal_state'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>
