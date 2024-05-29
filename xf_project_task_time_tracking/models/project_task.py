@@ -174,7 +174,7 @@ class ProjectTask(models.Model):
     @api.depends('internal_state', 'stage_id')
     def _compute_is_in_progress(self):
         for task in self:
-            task.is_in_progress = task.internal_state == OPEN and task.stage_id == 'normal'
+            task.is_in_progress = task.internal_state == OPEN and task.stage_id.internal_state == 'open'
 
     @api.depends('time_entry_ids.effective_hours_spent')
     def _sum_tracked_effective_hours_spent(self):
@@ -205,33 +205,44 @@ class ProjectTask(models.Model):
         create_description = None
         close_description = None
 
-        # Check if task kanban state is changed
-        if 'kanban_state_label' in init_values and self.kanban_state_label != init_values.get('kanban_state_label'):
-            create_description = close_description = self.kanban_state_label
-            # Close existing timesheet if kanban state is done or blocked
-            close_timesheet = self.kanban_state in ('done', 'blocked')
-            # Create new timesheet if internal state is open and kanban state is normal
-            create_timesheet = self.is_in_progress
+        # # Check if task kanban state is changed
+        # # Comprobar si se cambia el estado kanban de la tarea
+        # if 'kanban_state_label' in init_values and self.kanban_state_label != init_values.get('kanban_state_label'):
+        #     create_description = close_description = self.kanban_state_label
+        #     # Close existing timesheet if kanban state is done or blocked
+        #     # Cerrar la hoja de horas existente si el estado kanban está finalizado o bloqueado
+        #     close_timesheet = self.kanban_state in ('done', 'blocked')
+        #     # Create new timesheet if internal state is open and kanban state is normal
+        #     # Crear una nueva hoja de horas si el estado interno está abierto y el estado kanban es normal
+        #     create_timesheet = self.is_in_progress
 
         # Check if task stage is changed
+        # Comprobar si se cambia la etapa de la tarea
         if 'stage_id' in init_values and self.stage_id != init_values.get('stage_id'):
             create_description = close_description = self.stage_id.display_name
             # Close existing timesheet if task stage is changed
+            # Cerrar la hoja de horas existente si se cambia la etapa de la tarea
             close_timesheet = True
             # Create new timesheet if internal state is open and kanban state is normal
+            # Cree una nueva hoja de horas si el estado interno está abierto y el estado kanban es normal
             create_timesheet = self.is_in_progress
 
         # Check if task assignees are changed
+        # Compruebe si los asignados de tarea se cambian
         if 'user_ids' in init_values and init_values.get('user_ids') and self.user_ids != init_values.get('user_ids'):
             # If user is changed and internal state is open
+            # Si se cambia de usuario y el estado interno está abierto
             create_description = self.stage_id.display_name
             close_description = 'Reassigning Task'
             # Close existing timesheet if assigned user is changed
+            # Cerrar hoja de tiempo existente si se cambia la usuario asignada
             close_timesheet = True
             # Create new timesheet if internal state is open and kanban state is normal
+            # Cree una nueva hoja de horas si el estado interno está abierto y el estado kanban es normal
             create_timesheet = self.is_in_progress
 
         # Check if the "assignment units" value is changed
+        # Compruebe si el valor de "unidades de asignación" ha cambiado
         if 'assignment_units' in init_values and init_values.get('assignment_units') != self.assignment_units:
             create_description = self.stage_id.display_name
             close_description = None
@@ -247,9 +258,11 @@ class ProjectTask(models.Model):
         for task in self:
             if not task.is_in_progress or not task.user_ids:
                 # Do not track if task is not in progress or is not assigned
+                #  No realizar seguimiento si la tarea no está en progreso o no está asignada
                 continue
             if self.env.uid not in task.user_ids.ids:
                 # Track time only for assigned users
+                # Seguimiento del tiempo solo para usuarios asignados
                 continue
 
             self.env['project.task.time.entry'].with_context(auto_time_tracking=True).create({
