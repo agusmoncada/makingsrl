@@ -6,6 +6,7 @@ class MKGWeSend(models.Model):
 
     name = fields.Char(string='Name', required=True, default="remito")
     invoice_number = fields.Char(string='Invoice Number')
+    invoice_number_selector = fields.Many2one('account.move', string="Invoice")
     description = fields.Char(string='Description', default=lambda self: self._default_description())
     task_ids = fields.Many2many('project.task', string='Tasks')
 
@@ -22,5 +23,10 @@ class MKGWeSend(models.Model):
 
 class ProjectTaskExtension(models.Model):
     _inherit = 'project.task'
+
+    mkg_we_send_ids = fields.Many2many('mkg.we.send', string='Remitos Asociados')
+
+class AccountInvoiceExtension(models.Model):
+    _inherit = 'account.move'
 
     mkg_we_send_ids = fields.Many2many('mkg.we.send', string='Remitos Asociados')

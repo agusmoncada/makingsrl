@@ -22,6 +22,7 @@
         'security/ir.model.access.csv',
         'views/mkg_we_send_views.xml',
         'views/project_task_form.xml',
+        'views/account_move_form.xml',
         'data/data.xml',
     ],
 }
