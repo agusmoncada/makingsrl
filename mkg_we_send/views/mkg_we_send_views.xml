@@ -7,8 +7,10 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="description"/>
-                            <field name="name"/>
+                            <field name="description" readonly="1"/>
+                            <!-- <field name="name"/> -->
+                            <!-- <field name="invoice_number"/> -->
+                             <field name="invoice_number_selector"/>
                             <!-- Agrega otros campos según sea necesario -->
                         </group>
                         <notebook>
@@ -16,7 +18,7 @@
                             <!-- Campo Many2many que muestra las tareas en una vista de lista -->
                             <field name="task_ids">
                                 <tree>
-                                    <field name="name"/>
+                                    <!-- <field name="name"/> -->
                                     <field name="partner_id"/>
                                     <field name="project_id"/>
                                     <field name="user_ids" widget="many2many_tags"/>
@@ -41,7 +43,9 @@
               <field name="arch" type="xml">
                 <tree>
                   <field name="description"/>
-                  <field name="name"/>
+                  <!-- <field name="name"/> -->
+                  <!-- <field name="invoice_number"/> -->
+                  <field name="invoice_number_selector"/>
                   <field name="task_ids" widget="many2many_tags"/>
                   <field name="create_date"/>
                 </tree>
