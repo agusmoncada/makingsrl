@@ -63,4 +63,16 @@
 		            action="mkg_we_send_action_window"
                 parent="project.menu_main_pm"
                 sequence="99"/>
+
+        <record id="view_sequence_form_range" model="ir.ui.view">
+            <field name="name">view.sequence.form.range</field>
+            <field name="model">ir.sequence</field>
+            <field name="inherit_id" ref="base.sequence_view"/>
+            <field name="arch" type="xml">
+                <field name="use_date_range" position="after">
+                    <field name="min_range"/>
+                    <field name="max_range"/>
+                </field>
+            </field>
+        </record>
 </odoo>
