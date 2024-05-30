@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-29 23:19+0000\n"
-"PO-Revision-Date: 2024-05-29 23:19+0000\n"
+"POT-Creation-Date: 2024-05-30 03:59+0000\n"
+"PO-Revision-Date: 2024-05-30 03:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Numero de Factura"
 #. module: mkg_we_send
 #: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: mkg_we_send
 #: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__invoice_number_selector
@@ -48,7 +48,7 @@ msgstr "Numero de Factura"
 #. module: mkg_we_send
 #: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__invoice_number
 msgid "Invoice Number"
-msgstr "Numero de Factura(viejo)"
+msgstr "Numero de Factura"
 
 #. module: mkg_we_send
 #: model:ir.model,name:mkg_we_send.model_account_move
@@ -73,6 +73,16 @@ msgid "Making We Send"
 msgstr "Remitos"
 
 #. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_ir_sequence__max_range
+msgid "Maximum Range"
+msgstr "Maximo Rango"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_ir_sequence__min_range
+msgid "Minimum Range"
+msgstr "Rango Minimo"
+
+#. module: mkg_we_send
 #: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__name
 msgid "Name"
 msgstr "Nombre"
@@ -85,12 +95,17 @@ msgstr "Nombre"
 #: model_terms:ir.ui.view,arch_db:mkg_we_send.account_move_form_we_send
 #: model_terms:ir.ui.view,arch_db:mkg_we_send.project_task_form_we_send
 msgid "Remitos Asociados"
-msgstr "Remitos Asociados"
+msgstr "Remitos"
+
+#. module: mkg_we_send
+#: model:ir.model,name:mkg_we_send.model_ir_sequence
+msgid "Sequence"
+msgstr "Secuencia"
 
 #. module: mkg_we_send
 #: model_terms:ir.ui.view,arch_db:mkg_we_send.mkg_we_send_view_form
 msgid "Tareas Relacionadas"
-msgstr "Tareas Relacionadas"
+msgstr ""
 
 #. module: mkg_we_send
 #: model:ir.model,name:mkg_we_send.model_project_task
