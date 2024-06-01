@@ -9,7 +9,7 @@
                     <xpath expr="//notebook" position="inside">
                             <page string="Remitos Asociados">
                                 <field name="mkg_we_send_ids">
-                                    <tree>
+                                    <tree default_order="description desc">
                                         <!-- <field name="name"/> -->
                                         <!-- <field name="invoice_number"/> -->
                                         <field name="invoice_number_selector"/>

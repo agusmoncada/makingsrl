@@ -6,7 +6,7 @@ class MKGWeSend(models.Model):
     _description = 'Making We Send'
 
     name = fields.Char(string='Name', required=True, default="remito")
-    invoice_number = fields.Char(string='Invoice Number')
+    # invoice_number = fields.Char(string='Invoice Number')
     invoice_number_selector = fields.Many2one('account.move', string="Invoice")
     description = fields.Char(string='Description', default=lambda self: self._default_description())
     task_ids = fields.Many2many('project.task', string='Tasks')
@@ -23,6 +23,18 @@ class MKGWeSend(models.Model):
             else:
                 raise ValidationError(f"El número de secuencia {sequence_number} está fuera del rango configurado ({sequence.min_range} - {sequence.max_range}).")
         return 'New'
+    
+    @api.model
+    def default_get(self, fields_list):
+        res = super(MKGWeSend, self).default_get(fields_list)
+        if self.env.context.get('default_invoice_number_selector'):
+            res['invoice_number_selector'] = self.env.context.get('default_invoice_number_selector')
+        return res
+    
+    # @api.onchange('invoice_number_selector')
+    # def _onchange_invoice_number_selector(self):
+    #     if self.invoice_number_selector and not self.invoice_number_selector.id:
+    #         self.invoice_number_selector.id = self.env.context.get('default_invoice_number_selector')
 
     # @api.model # esto se anula porque ya se llama a _default_description en la definicion del campo
     # def create(self, vals):
@@ -57,6 +69,15 @@ class AccountInvoiceExtension(models.Model):
     _inherit = 'account.move'
 
     mkg_we_send_ids = fields.Many2many('mkg.we.send', string='Remitos Asociados')
+
+    def write(self, vals):
+        result = super(AccountInvoiceExtension, self).write(vals)
+        if 'mkg_we_send_ids' in vals:
+            for move in self:
+                for we_send in move.mkg_we_send_ids:
+                    if not we_send.invoice_number_selector:
+                        we_send.invoice_number_selector = move.id
+        return result
 
 class IrSequence(models.Model):
     _inherit = 'ir.sequence'

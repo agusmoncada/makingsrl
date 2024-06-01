@@ -41,7 +41,7 @@
             <field name="name">mkg.we.send.view.tree</field>
               <field name="model">mkg.we.send</field>
               <field name="arch" type="xml">
-                <tree>
+                <tree default_order="description desc">
                   <field name="description"/>
                   <!-- <field name="name"/> -->
                   <!-- <field name="invoice_number"/> -->
