@@ -6,7 +6,7 @@ class MKGWeSend(models.Model):
     _description = 'Making We Send'
 
     name = fields.Char(string='Name', required=True, default="remito")
-    # invoice_number = fields.Char(string='Invoice Number')
+    invoice_number = fields.Char(string='Invoice Number')
     invoice_number_selector = fields.Many2one('account.move', string="Invoice")
     description = fields.Char(string='Description', default=lambda self: self._default_description())
     task_ids = fields.Many2many('project.task', string='Tasks')
