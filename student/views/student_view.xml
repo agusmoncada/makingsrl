@@ -1,0 +1,87 @@
+<odoo>
+
+    <record id="wb_student_tree_view" model="ir.ui.view">
+        <field name="name">wb.student.tree.view</field>
+        <field name="model">wb.student</field> <!-- Cambia res.partner por el modelo que deseas mostrar -->
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="tipo" />
+                <field name="diametro" />
+                <field name="fig" />
+            </tree>
+        </field>
+    </record>
+    <record id="wb_student_form_view" model="ir.ui.view">
+        <field name="name">wb.student.form.view</field>
+        <field name="model">wb.student</field> <!-- Cambia res.partner por el modelo que deseas mostrar -->
+        <field name="arch" type="xml">
+                    <form>
+                    <header>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" widget="char"/>
+                            </h1>
+                        </div>
+                        <!-- <field name="image" widget="image" class="oe_avatar float-right"/> -->
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="tipo" />
+                            <field name="fig" />
+                            <field name="diametro" />
+                            <field name="marca" />
+                            <!-- <field name="figura" /> -->
+                            <field name="descripcion_opcional" widget="text"/>
+                            <!-- <field name="a" /> -->
+                            <!-- 27 campos de letra -->
+                            <field name="letra_a"/>
+                            <field name="letra_b"/>
+                            <field name="letra_c"/>
+                            <field name="letra_d"/>
+                            <field name="letra_e"/>
+                            <field name="letra_f"/>
+                            <field name="letra_g"/>
+                            <field name="letra_h"/>
+                            <field name="letra_i"/>
+                            <field name="letra_j"/>
+                            <field name="letra_k"/>
+                            <field name="letra_l"/>
+                            <field name="letra_m"/>
+                            <field name="letra_n"/>
+                            <field name="letra_o"/>
+                            <field name="letra_p"/>
+                            <field name="letra_q"/>
+                            <field name="letra_r"/>
+                            <field name="letra_s"/>
+                            <field name="letra_t"/>
+                            <field name="letra_u"/>
+                            <field name="letra_v"/>
+                            <field name="letra_w"/>
+                            <field name="letra_x"/>
+                            <field name="letra_y"/>
+                            <field name="letra_z"/>
+
+                            <field name="second_image" widget="image"/>
+                            <field name="detail_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <!-- Agrega otros campos de wb.detail si es necesario -->
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+        </field>
+    </record>
+    <record id="wb_student_action" model="ir.actions.act_window">
+        <field name="name">Piezas</field>
+        <field name="res_model">wb.student</field> <!-- Cambia res.partner por el modelo que deseas mostrar -->
+        <field name="view_mode">tree,form</field>
+    </record>
+        <menuitem id="wb_student_root_menu" name="Student"/>
+        <menuitem id="wb_student_sub_root_menu" name="Weblearns" parent="wb_student_root_menu"/>
+        <menuitem id="wb_student_menu" action="wb_student_action" name="Student List" parent="wb_student_sub_root_menu"/>
+        
+</odoo>
