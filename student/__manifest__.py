@@ -8,7 +8,7 @@
     'description': 'Este módulo proporciona informes personalizados.',
     'author': 'Tu Nombre',
     'website': 'https://www.tusitio.com',
-    'depends': ['base'],
+    'depends': ['base','project'],
     'data': [
         'security/ir.model.access.csv',
         'views/student_view.xml',

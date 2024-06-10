@@ -130,4 +130,4 @@ msgstr ""
 #. module: student
 #: model:ir.ui.menu,name:student.wb_student_sub_root_menu
 msgid "Weblearns"
-msgstr "Configuracion"
+msgstr "Piezas"
