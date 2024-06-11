@@ -6,14 +6,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-30 03:59+0000\n"
-"PO-Revision-Date: 2024-05-30 03:59+0000\n"
+"POT-Creation-Date: 2024-06-11 05:15+0000\n"
+"PO-Revision-Date: 2024-06-11 05:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: mkg_we_send
+#: model:ir.model.fields.selection,name:mkg_we_send.selection__mkg_we_send__state__cancelled
+msgid "Anulado"
+msgstr ""
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__client_id
+msgid "Client"
+msgstr "Cliente"
 
 #. module: mkg_we_send
 #: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__create_uid
@@ -34,6 +44,16 @@ msgstr "Descripcion"
 #: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__display_name
 msgid "Display Name"
 msgstr "Numero de Factura"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__state
+msgid "Estado"
+msgstr ""
+
+#. module: mkg_we_send
+#: model:ir.model.fields.selection,name:mkg_we_send.selection__mkg_we_send__state__invoiced
+msgid "Facturado"
+msgstr ""
 
 #. module: mkg_we_send
 #: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__id
@@ -88,6 +108,16 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: mkg_we_send
+#: model:ir.model.fields.selection,name:mkg_we_send.selection__mkg_we_send__state__draft
+msgid "Para Facturar"
+msgstr ""
+
+#. module: mkg_we_send
+#: model:ir.model.fields.selection,name:mkg_we_send.selection__mkg_we_send__state__lost
+msgid "Perdido"
+msgstr ""
+
+#. module: mkg_we_send
 #: model:ir.model.fields,field_description:mkg_we_send.field_account_bank_statement_line__mkg_we_send_ids
 #: model:ir.model.fields,field_description:mkg_we_send.field_account_move__mkg_we_send_ids
 #: model:ir.model.fields,field_description:mkg_we_send.field_account_payment__mkg_we_send_ids
@@ -116,3 +146,8 @@ msgstr "Tarea"
 #: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__task_ids
 msgid "Tasks"
 msgstr "Órdenes de Trabajo"
+
+#. module: mkg_we_send
+#: model_terms:ir.ui.view,arch_db:mkg_we_send.mkg_we_send_view_form
+msgid "Ver Factura"
+msgstr ""

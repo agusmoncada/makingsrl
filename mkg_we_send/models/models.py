@@ -10,6 +10,35 @@ class MKGWeSend(models.Model):
     invoice_number_selector = fields.Many2one('account.move', string="Invoice")
     description = fields.Char(string='Description', default=lambda self: self._default_description())
     task_ids = fields.Many2many('project.task', string='Tasks')
+    client_id = fields.Many2one('res.partner', string='Client', compute='_compute_client_id', store=True)
+    state = fields.Selection([
+        ('draft', 'Para Facturar'),
+        ('invoiced', 'Facturado'),
+        ('lost', 'Perdido'),
+        ('cancelled', 'Anulado'),
+    ], string='Estado', default='draft', readonly=True, copy=False, tracking=True)
+
+    @api.onchange('invoice_number_selector')
+    def _compute_state(self):
+        for record in self:
+            record.state = 'invoiced' if record.invoice_number_selector else 'draft'
+
+    def action_view_selected_invoice(self):
+        action = {
+            'type': 'ir.actions.act_window',
+            'res_model': 'account.move',
+            'view_mode': 'form',
+            'res_id': self.invoice_number_selector.id,
+        }
+        return action
+    
+    @api.depends('task_ids.partner_id')
+    def _compute_client_id(self):
+        for record in self:
+            if record.task_ids:
+                record.client_id = record.task_ids[0].partner_id
+            else:
+                record.client_id = False
 
     @api.model
     def _default_description(self):
