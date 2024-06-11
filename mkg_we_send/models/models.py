@@ -16,7 +16,7 @@ class MKGWeSend(models.Model):
         ('invoiced', 'Facturado'),
         ('lost', 'Perdido'),
         ('cancelled', 'Anulado'),
-    ], string='Estado', default='draft', readonly=True, copy=False, tracking=True)
+    ], string='Estado', default='draft', copy=False, tracking=True)
 
     @api.onchange('invoice_number_selector')
     def _compute_state(self):
