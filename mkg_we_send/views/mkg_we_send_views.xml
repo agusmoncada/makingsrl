@@ -19,7 +19,7 @@
                     <sheet>
                         <div class="oe_button_box" name="button_box">
                             <button name="action_view_selected_invoice" string="Ver Factura" type="object" icon="fa-external-link" invisible="invoice_number_selector == False"/>
-                            <!-- <button name="action_view_selected_cotizacion" string="Ver Cotizacion" type="object" icon="fa-external-link"/> -->
+                            <button name="action_view_source_sale_orders" string="Ver Cotizacion" type="object" icon="fa-external-link" invisible="sale_order_id == False"/>
                         </div>
                         <group>
                             <!-- Aquí se muestra el estado -->
@@ -30,6 +30,8 @@
                             <!-- <field name="name"/> -->
                             <!-- <field name="invoice_number"/> -->
                              <field name="invoice_number_selector"/>
+                             <field name="sale_order_id"/>
+                             <field name="client_id"/>
                             <!-- Agrega otros campos según sea necesario -->
                         </group>
                         <notebook>
@@ -67,7 +69,10 @@
                   <!-- <field name="name"/> -->
                   <!-- <field name="invoice_number"/> -->
                   <field name="invoice_number_selector"/>
+                  <field name="sale_order_id"/>
+                  <field name="create_date"/>
                   <field name="state"/>
+                  <field name="days_since_creation"/>
                 </tree>
             </field>
         </record>

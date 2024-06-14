@@ -16,6 +16,7 @@
     "application": False,
     'depends': ['base',
                 'project',
+                'sale',
                 ],
 
     'data': [

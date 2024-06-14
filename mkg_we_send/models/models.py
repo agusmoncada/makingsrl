@@ -17,6 +17,65 @@ class MKGWeSend(models.Model):
         ('lost', 'Perdido'),
         ('cancelled', 'Anulado'),
     ], string='Estado', default='draft', copy=False, tracking=True)
+    sale_order_id = fields.Many2one('sale.order', string="Sale Order", compute="_compute_sale_order_id", store=True)
+    days_since_creation = fields.Integer(string='Días desde la creación', compute='_compute_days_since_creation')
+
+    @api.depends('create_date')
+    def _compute_days_since_creation(self):
+        for order in self:
+            if order.create_date:
+                create_date = fields.Date.from_string(order.create_date)
+                today_date = fields.Date.from_string(fields.Date.today())
+                delta = today_date - create_date
+                order.days_since_creation = delta.days
+            else:
+                order.days_since_creation = 0
+
+    @api.depends('invoice_number_selector')
+    def _compute_sale_order_id(self):
+        for record in self:
+            if record.invoice_number_selector:
+                # Obtener las líneas de factura
+                invoice_lines = record.invoice_number_selector.invoice_line_ids
+                # Filtrar las líneas que tienen el campo `sale_line_ids`
+                invoice_lines_with_sale_lines = invoice_lines.filtered(lambda l: 'sale_line_ids' in l)
+                if invoice_lines_with_sale_lines:
+                    # Mapear y obtener las órdenes de venta
+                    sale_orders = invoice_lines_with_sale_lines.mapped('sale_line_ids.order_id')
+                    # Verificar si hay órdenes de venta válidas antes de asignar
+                    valid_sale_orders = sale_orders.filtered(lambda so: so.id)
+                    record.sale_order_id = valid_sale_orders[0] if valid_sale_orders else False
+                else:
+                    record.sale_order_id = False
+            else:
+                record.sale_order_id = False
+
+    def action_view_source_sale_orders(self):
+        self.ensure_one()
+        
+        # Obtener la factura seleccionada
+        selected_invoice = self.invoice_number_selector
+        
+        # Verificar que se haya seleccionado una factura
+        if not selected_invoice:
+            return {'type': 'ir.actions.act_window_close'}
+        
+        # Obtener las órdenes de venta relacionadas con la factura seleccionada
+        source_orders = selected_invoice.invoice_line_ids.mapped('sale_line_ids.order_id')
+        
+        # Preparar la acción de ventana
+        result = self.env['ir.actions.act_window']._for_xml_id('sale.action_orders')
+        
+        if source_orders:
+            if len(source_orders) > 1:
+                result['domain'] = [('id', 'in', source_orders.ids)]
+            else:
+                result['views'] = [(self.env.ref('sale.view_order_form').id, 'form')]
+                result['res_id'] = source_orders.id
+        else:
+            result = {'type': 'ir.actions.act_window_close'}
+        
+        return result
 
     @api.onchange('invoice_number_selector')
     def _compute_state(self):
