@@ -26,6 +26,10 @@
                             <field name="state" widget="statusbar" statusbar_visible="draft,invoiced,lost,cancelled"/>
                         </group>
                         <group>
+                            <!-- Aquí se muestra el estado como campo seleccionable editable -->
+                            <field name="state" default="draft"/>
+                        </group>
+                        <group>
                             <field name="description" readonly="1"/>
                             <!-- <field name="name"/> -->
                             <!-- <field name="invoice_number"/> -->

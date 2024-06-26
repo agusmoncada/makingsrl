@@ -20,6 +20,35 @@ class MKGWeSend(models.Model):
     sale_order_id = fields.Many2one('sale.order', string="Sale Order", compute="_compute_sale_order_id", store=True)
     days_since_creation = fields.Integer(string='Días desde la creación', compute='_compute_days_since_creation')
 
+    # @api.model
+    # def create(self, vals):
+    #     # Validar que el estado es válido
+    #     if 'state' in vals and vals['state'] not in ['draft', 'invoiced', 'lost', 'cancelled']:
+    #         raise ValidationError("You can only create a record in the 'draft', 'invoiced', 'lost', or 'cancelled' state.")
+    #     # Validar que si el estado es 'invoiced', el campo 'invoice_number_selector' esté lleno
+    #     if vals.get('state') == 'invoiced' and not vals.get('invoice_number_selector'):
+    #         raise ValidationError("Debe asociar una factura en el campo 'invoice_number_selector' antes de crear un registro en estado 'invoiced'.")
+    #     return super(MKGWeSend, self).create(vals)
+
+    def write(self, vals):
+        for record in self:
+            if 'state' in vals:
+                new_state = vals.get('state')
+                if record.state == 'draft':
+                    if new_state == 'invoiced' and not record.invoice_number_selector and not vals.get('invoice_number_selector'):
+                        raise ValidationError("Debe asociar una factura en el campo 'Numero de Factura' antes de cambiar el estado a 'Facturado'.")
+                    if new_state not in ['draft', 'invoiced', 'lost', 'cancelled']:
+                        raise ValidationError("Esta eligiendo un estado vacio. Por favor, tiene que elegir si o si uno de los 4 estados disponibles: 'Para Facturar', 'Facturado', 'Perdido' o 'Anulado'..")
+                elif record.state == 'invoiced':
+                    if new_state == 'draft':
+                        # Limpiar invoice_number_selector cuando el estado cambia de invoiced a draft
+                        vals['invoice_number_selector'] = False
+                    else:
+                        raise ValidationError("De 'Facturado', sólo puede cambiar el estado a 'A Facturar'.")
+                elif record.state in ['lost', 'cancelled']:
+                    raise ValidationError("No se puede cambiar el estado una vez que el mismo esta en 'Perdido' o 'Anulado'.")
+        return super(MKGWeSend, self).write(vals)
+
     @api.depends('create_date')
     def _compute_days_since_creation(self):
         for order in self:
@@ -134,6 +163,15 @@ class MKGWeSend(models.Model):
     def create(self, vals):
         # Creamos el registro y capturamos la excepción si falla
         try:
+
+            # Validar que el estado es válido
+            if 'state' in vals and vals['state'] not in ['draft', 'invoiced', 'lost', 'cancelled']:
+                raise ValidationError("Esta eligiendo un estado vacio. Por favor, tiene que elegir si o si uno de los 4 estados disponibles: 'Para Facturar', 'Facturado', 'Perdido' o 'Anulado'.")
+        
+            # Validar que si el estado es 'invoiced', el campo 'invoice_number_selector' esté lleno
+            if vals.get('state') == 'invoiced' and not vals.get('invoice_number_selector'):
+                raise ValidationError("Debe asociar una factura en el campo 'Numero de Factura' cuando esta creando un remito en estado 'Facturado'.")
+
             new_record = super(MKGWeSend, self).create(vals)
         except Exception as e:
             new_record = False
