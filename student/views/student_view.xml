@@ -30,6 +30,7 @@
                             <field name="tipo" />
                             <field name="fig" />
                             <field name="diametro" />
+                            <field name="presion" />
                             <field name="marca" />
                             <!-- <field name="figura" /> -->
                             <field name="descripcion_opcional" widget="text"/>
@@ -117,7 +118,7 @@
                         </group>
                         <group>
                             <field name="numero_ot"/>
-                            <field name="responsable"/>
+                            <field name="responsable" widget="many2many_tags"/>
                             <field name="ubicacion"/>
                         </group>
                     </group>
@@ -173,7 +174,8 @@
         <menuitem id="wb_student_root_menu" name="Student"/>
         <!-- <menuitem id="wb_student_menu" action="wb_student_action" name="Student List" parent="wb_student_sub_root_menu"/> -->
         <menuitem id="wb_student_sub_root_menu_ingreso" action="wb1_student_action_ingreso" name="Ingreso" sequence="1" parent="wb_student_root_menu"/>
-        <menuitem id="wb_student_sub_root_menu" name="Weblearns" action="wb_student_action" sequence="2" parent="wb_student_root_menu"/>
+        <menuitem id="wb_student_sub_root_menu" name="Weblearns" sequence="2" parent="wb_student_root_menu"/>
+        <menuitem id="wb_student_sub_root_menu_piezas" name="Piezas" action="wb_student_action" sequence="9" parent="student.wb_student_sub_root_menu"/>
         <!-- <menuitem id="wb_student_sub_root_menu_configuracion" name="Configuracion" parent="wb_student_root_menu"/>
         <menuitem id="wb_student_sub_root_menu_configuracion" name="Configuracion" parent="wb_student_root_menu"/> -->
 
@@ -197,4 +199,41 @@
             </tree>
         </field>
     </record>
+
+     <record id="view_task_form_with_button" model="ir.ui.view">
+        <field name="name">project.task.form.with.button</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box">
+                <button name="action_link_to_ingreso" string="Ver Ingreso" type="object" icon="fa-external-link">
+                </button>
+            </div>
+            <header>
+                <button name="action_create_ingreso" type="object" class="oe_highlight" string="Ingreso de piezas"/>
+            </header>
+        </field>
+    </record>
+
+    <!-- <record id="action_open_ingreso_form" model="ir.actions.act_window">
+        <field name="name">Ingreso</field>
+        <field name="res_model">ingreso</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record> -->
+
+    <!-- <record id="view_task_form_inherit" model="ir.ui.view">
+        <field name="name">project.task.form.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+           <xpath expr="//form/header" position="after">
+            <div class="oe_button_box">
+                <button name="action_link_to_ingreso" string="Ver Ingreso" type="object" icon="fa-external-link">
+                </button>
+            </div>
+        </xpath>
+        </field>
+    </record> -->
+
 </odoo>

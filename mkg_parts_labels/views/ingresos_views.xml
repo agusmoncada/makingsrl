@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+            <record id="wb_student_form_view_mkg_parts_labels" model="ir.ui.view">
+                <field name="name">wb.student.form.view.mkg.parts.labels</field>
+                <field name="model">wb.student</field>
+                <field name="inherit_id" ref="student.wb_student_form_view"/>
+                <field name="arch" type="xml">
+                    <field name="tipo" position="after">
+                        <field name="mkg_parts_labels_id" widget="many2many_tags"/>
+                    </field>
+                </field>
+            </record>
+            <record id="wb_student_tree_view_mkg_parts_labels" model="ir.ui.view">
+                <field name="name">wb.student.tree.view.mkg.parts.labels</field>
+                <field name="model">wb.student</field>
+                <field name="inherit_id" ref="student.wb_student_tree_view"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//tree" position="inside">
+                        <field name="mkg_parts_labels_id" widget="many2many_tags"/>
+                    </xpath>
+                </field>
+            </record>
+   </data>
+</odoo>

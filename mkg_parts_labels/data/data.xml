@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="option_izaje" model="mkg.categories">
+            <field name="name">IZAJE</field>
+            <field name="description">IZAJE</field>
+        </record>
+        <record id="option_vss" model="mkg.categories">
+            <field name="name">VSS</field>
+            <field name="description">VSS</field>
+        </record>
+        <record id="option_diverter" model="mkg.categories">
+            <field name="name">DIVERTER</field>
+            <field name="description">DIVERTER</field>
+        </record>
+        <record id="option_flowline" model="mkg.categories">
+            <field name="name">FLOWLINE</field>
+            <field name="description">FLOWLINE</field>
+        </record>
+        <record id="option_manifold" model="mkg.categories">
+            <field name="name">MANIFOLD</field>
+            <field name="description">MANIFOLD</field>
+        </record>
+        <record id="option_recipiente" model="mkg.categories">
+            <field name="name">RECIPIENTE</field>
+            <field name="description">RECIPIENTE</field>
+        </record>
+        <record id="option_sandbox" model="mkg.categories">
+            <field name="name">SANDBOX</field>
+            <field name="description">SANDBOX</field>
+        </record>
+        <record id="option_sandtrap" model="mkg.categories">
+            <field name="name">SANDTRAP</field>
+            <field name="description">SANDTRAP</field>
+        </record>
+        <record id="option_separador" model="mkg.categories">
+            <field name="name">SEPARADOR</field>
+            <field name="description">SEPARADOR</field>
+        </record>
+        <record id="option_otros" model="mkg.categories">
+            <field name="name">OTROS</field>
+            <field name="description">OTROS</field>
+        </record>
+        <record id="option_desander" model="mkg.categories">
+            <field name="name">DESANDER</field>
+            <field name="description">DESANDER</field>
+        </record>
+
+
+    </data>
+</odoo>

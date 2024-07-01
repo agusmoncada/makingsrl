@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import fields, models, api
+from odoo.exceptions import UserError
 
 class Student(models.Model):
     _name = 'wb.student'
@@ -11,6 +12,7 @@ class Student(models.Model):
     tipo = fields.Char(string='Tipo')
     fig = fields.Char(string='Fig')
     diametro = fields.Char(string='Diametro')
+    presion = fields.Char(string='Presion')
     marca = fields.Char(string='Marca')
     # figura = fields.Char(string='Figura')
     descripcion_opcional = fields.Text("Descripcion Opcional")
@@ -62,7 +64,7 @@ class Ingreso(models.Model):
     fecha = fields.Date(string='Fecha')
     equipo = fields.Char(string='Equipo')
     numero_ot = fields.Many2one('project.task', string='Número de OT')
-    responsable = fields.Many2one('res.users', string='Responsable')
+    responsable = fields.Many2many('res.users', string='Responsables')
     ubicacion = fields.Char(string='Ubicación')
     seleccionar_piezas = fields.Many2one('wb.student', string='Seleccionar Pieza')
     cantidad_piezas = fields.Integer(string='Cantidad de piezas')
@@ -191,4 +193,63 @@ class InformeFinal(models.Model):
     _description = 'INF: Informe Final'
 
     name = fields.Char(string='Nombre')
+
+
+class ProjectTask(models.Model):
+    _inherit = 'project.task'
+
+    ingresos_ids = fields.Many2many('ingreso', string='Ingresos de Piezas')
+
+    def action_create_ingreso(self):
+        # Crear un nuevo registro en el modelo 'ingreso'
+        new_ingreso = self.env['ingreso'].create({
+            # Aquí puedes agregar cualquier valor predeterminado que necesites
+            'cliente': self.partner_id.id,
+            'numero_ot': self.id,
+            'fecha': self.date_deadline,
+            'responsable': [(6, 0, self.user_ids.ids)],
+        })
+
+        # Agregar el nuevo ingreso a la relación Many2many en la tarea actual
+        self.ingresos_ids |= new_ingreso
+
+        # Retornar una acción para abrir el formulario del nuevo ingreso
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Ingreso',
+            'res_model': 'ingreso',
+            'view_mode': 'form',
+            'res_id': new_ingreso.id,
+            'target': 'current',
+        }
+    
+    def action_link_to_ingreso(self):
+        self.ensure_one()
+        
+        if self.ingresos_ids:
+            if len(self.ingresos_ids) == 1:
+                # Abrir la vista del primer ingreso relacionado
+                return {
+                    'name': 'Ingreso',
+                    'view_mode': 'form',
+                    'res_model': 'ingreso',
+                    'type': 'ir.actions.act_window',
+                    'res_id': self.ingresos_ids[0].id,
+                    'view_id': False,
+                    'target': 'current',
+                }
+            else:
+                # Filtrar y abrir la vista de árbol de ingresos relacionados
+                return {
+                    'name': 'Ingresos Relacionados',
+                    'view_mode': 'tree,form',
+                    'res_model': 'ingreso',
+                    'type': 'ir.actions.act_window',
+                    'domain': [('id', 'in', self.ingresos_ids.ids)],
+                    'view_id': False,
+                    'target': 'current',
+                }
+        else:
+            # Manejar el caso donde no hay ingresos relacionados
+            raise UserError('No se encontraron ingresos relacionados.')
     
