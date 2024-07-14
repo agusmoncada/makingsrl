@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Extend the payment receipt report view -->
+        <template id="report_payment_receipt_document_custom" inherit_id="account.report_payment_receipt_document">
+            <xpath expr="//div[@class='row'][div[@t-if='o.amount']]" position="after">
+                <div class="row">
+                    <div class="col-6" t-if="o.journal_id">
+                        Journal: <span t-field="o.journal_id.name"/>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>
