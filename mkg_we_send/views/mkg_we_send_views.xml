@@ -75,7 +75,7 @@
                   <field name="invoice_number_selector"/>
                   <field name="sale_order_id"/>
                   <field name="create_date"/>
-                  <field name="state"/>
+                  <field name="state" widget="badge"/>
                   <field name="days_since_creation"/>
                 </tree>
             </field>
