@@ -18,7 +18,7 @@ class MKGWeSend(models.Model):
         ('cancelled', 'Anulado'),
     ], string='Estado', default='draft', copy=False, tracking=True)
     sale_order_id = fields.Many2one('sale.order', string="Sale Order", compute="_compute_sale_order_id", store=True)
-    days_since_creation = fields.Integer(string='Días desde la creación', compute='_compute_days_since_creation')
+    days_since_creation = fields.Integer(string='Días desde la creación', compute='_compute_days_since_creation', store=True)
 
     # @api.model
     # def create(self, vals):
@@ -195,6 +195,7 @@ class AccountInvoiceExtension(models.Model):
     _inherit = 'account.move'
 
     mkg_we_send_ids = fields.Many2many('mkg.we.send', string='Remitos Asociados')
+    remitos_string = fields.Char(compute='_compute_remitos_string', string='Remitos')
 
     def write(self, vals):
         result = super(AccountInvoiceExtension, self).write(vals)
@@ -204,6 +205,13 @@ class AccountInvoiceExtension(models.Model):
                     if not we_send.invoice_number_selector:
                         we_send.invoice_number_selector = move.id
         return result
+    
+    @api.depends('mkg_we_send_ids.invoice_number_selector')
+    def _compute_remitos_string(self):
+        for move in self:
+            # remitos = move.mkg_we_send_ids.mapped('invoice_number_selector')
+            move.remitos_string = ','.join(str(remito.description) for remito in move.mkg_we_send_ids)
+
 
 class IrSequence(models.Model):
     _inherit = 'ir.sequence'

@@ -25,5 +25,6 @@
         'views/project_task_form.xml',
         'views/account_move_form.xml',
         'data/data.xml',
+        'report/report_invoice.xml',
     ],
 }

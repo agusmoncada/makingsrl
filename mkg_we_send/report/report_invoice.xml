@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Inherit the report template -->
+        <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
+            <xpath expr="//table[@name='invoice_line_table']" position="inside">
+                <tfoot>
+                    <tr>
+                        <!-- <td colspan="3">Remitos: 444,555,666</td> -->
+                        <td colspan="3">Remitos: <t t-esc="o.remitos_string"/></td>
+                    </tr>
+                </tfoot>
+            </xpath>
+        </template>
+    </data>
+</odoo>
