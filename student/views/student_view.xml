@@ -141,16 +141,17 @@
                             <field name="planilla_ids" widget="one2many_list">
                                 <tree>
                                     <field name="item"/>
-                                    <field name="pieza"/>
+                                    <field name="pieza_id"/>
                                     <field name="descripcion"/>
                                     <field name="serie"/>
                                     <field name="precinto"/>
-                                    <field name="iv"/>
-                                    <field name="ga"/>
-                                    <field name="me"/>
-                                    <field name="pm"/>
-                                    <field name="lp"/>
-                                    <field name="ph"/>
+                                    <button name="open_le_form" type="object" string="Abrir LE"/>
+                                    <button name="open_iv_form" type="object" string="Abrir IV"/>
+                                    <button name="open_ga_form" type="object" string="Abrir GA"/>
+                                    <button name="open_me_form" type="object" string="Abrir ME"/>
+                                    <button name="open_pm_form" type="object" string="Abrir PM"/>
+                                    <!-- <button name="open_lp_form" type="object" string="Abrir LP"/> -->
+                                    <!-- <button name="open_ph_form" type="object" string="Abrir PH"/> -->
                                     <field name="inf"/>
                                 </tree>
                             </field>
@@ -159,6 +160,114 @@
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record id="view_formulario_prueba_le_form" model="ir.ui.view">
+        <field name="name">formulario.prueba.le.form</field>
+        <field name="model">formulario.prueba.le</field>
+        <field name="arch" type="xml">
+            <form string="LE: Limpieza Extremos">
+                <sheet>
+                    <group>
+                        <field name="aprobado" invisible="1"/>
+                        <field name="planilla_id" invisible="1"/>
+                        <field name="name"/>
+                        <field name="todos"/>
+                        <button name="aprobar_y_siguiente" type="object" string="Aprobar y siguente" class="oe_highlight" invisible="aprobado == True"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_formulario_prueba_iv_form" model="ir.ui.view">
+        <field name="name">formulario.prueba.iv.form</field>
+        <field name="model">formulario.prueba.iv</field>
+        <field name="arch" type="xml">
+            <form string="IV: Inspección Visual">
+                <sheet>
+                    <group>
+                        <field name="aprobado" invisible="1"/>
+                        <field name="planilla_id" invisible="1"/>
+                        <field name="name"/>
+                        <field name="estado_general"/>
+                        <field name="estado_rosca"/>
+                        <field name="corrosion"/>
+                        <field name="estado_sellos"/>
+                        <field name="observaciones"/>
+                        <button name="aprobar_y_siguiente" type="object" string="Aprobar y siguente" class="oe_highlight" invisible="aprobado == True"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_formulario_prueba_ga_form" model="ir.ui.view">
+        <field name="name">formulario.prueba.ga.form</field>
+        <field name="model">formulario.prueba.ga</field>
+        <field name="arch" type="xml">
+            <form string="GA: Inspección con Calibres">
+                <sheet>
+                    <group>
+                        <field name="aprobado" invisible="1"/>
+                        <field name="planilla_id" invisible="1"/>
+                        <field name="name"/>
+                        <button name="aprobar_y_siguiente" type="object" string="Aprobar y siguente" class="oe_highlight" invisible="aprobado == True"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_formulario_prueba_me_form" model="ir.ui.view">
+        <field name="name">formulario.prueba.me.form</field>
+        <field name="model">formulario.prueba.me</field>
+            <field name="arch" type="xml">
+                <form string="ME: Medición de Espesores">
+                    <sheet>
+                        <group>
+                            <!-- <field name="aprobado" invisible="1"/> -->
+                            <!-- <field name="planilla_id" invisible="1"/> -->
+                            <field name="name"/>
+                            <field name="estado" readonly="1"/>
+                            <field name="observaciones"/>
+                            <!-- <field name="punto_a_minimo_admisible"/>
+                            <field name="punto_b_minimo_admisible"/> -->
+                        </group>
+                            <group>
+                                <group>
+                                    <field name="punto_a_minimo_admisible" readonly="1"/>
+                                    <field name="punto_b_minimo_admisible" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="punto_a_valor_medido" placeholder="Completar"/>
+                                    <field name="punto_b_valor_medido" placeholder="Completar"/>
+                                </group>
+                            </group>
+                            <group>
+                                <button name="aprobar_y_siguiente" type="object" string="Aprobar y siguente" class="oe_highlight"/>
+                                <button name="rechazar" type="object" string="Rechazar" class="oe_highlight"/>
+                            </group> 
+                    </sheet>
+                </form>
+            </field>
+    </record>
+
+    <record id="view_formulario_prueba_le_form" model="ir.ui.view">
+        <field name="name">formulario.prueba.pm.form</field>
+        <field name="model">formulario.prueba.pm</field>
+            <field name="arch" type="xml">
+                <form string="PM: Partículas Magnetizables">
+                    <sheet>
+                        <group>
+                            <field name="aprobado" invisible="1"/>
+                            <field name="planilla_id" invisible="1"/>
+                            <field name="name"/>
+                            <button name="aprobar_y_siguiente" type="object" string="Aprobar y siguente" class="oe_highlight" invisible="aprobado == True"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
     </record>
 
     <record id="wb_student_action" model="ir.actions.act_window">
@@ -185,18 +294,52 @@
         <field name="arch" type="xml">
             <tree string="Planilla de Recepción">
                 <field name="item"/>
-                <field name="pieza"/>
+                <field name="pieza_id"/>
                 <field name="descripcion"/>
                 <field name="serie"/>
                 <field name="precinto"/>
-                <field name="iv"/>
-                <field name="ga"/>
-                <field name="me"/>
-                <field name="pm"/>
-                <field name="lp"/>
-                <field name="ph"/>
+                <button name="open_le_form" type="object" string="Abrir LE"/>
+                <button name="open_iv_form" type="object" string="Abrir IV"/>
+                <button name="open_ga_form" type="object" string="Abrir GA"/>
+                <button name="open_me_form" type="object" string="Abrir ME"/>
+                <button name="open_pm_form" type="object" string="Abrir PM"/>
+                <!-- <button name="open_lp_form" type="object" string="Abrir LP"/>
+                <button name="open_ph_form" type="object" string="Abrir PH"/> -->
                 <field name="inf"/>
             </tree>
+        </field>
+    </record>
+
+    <record id="view_planilla_recepcion_form" model="ir.ui.view">
+        <field name="name">planilla.recepcion.form</field>
+        <field name="model">planilla.recepcion</field>
+        <field name="arch" type="xml">
+            <form string="Planilla de Recepción">
+                <sheet>
+                    <!-- Grupo 1 -->
+                    <group>
+                        <group>
+                            <field name="item"/>
+                            <field name="pieza_id"/>
+                            <field name="descripcion"/>
+                            <field name="serie"/>
+                            <field name="precinto"/>
+                        </group>
+                        <group>
+                            <button name="open_le_form" type="object" string="Abrir LE" class="oe_highlight"/>
+                            <button name="open_iv_form" type="object" string="Abrir IV" class="oe_highlight"/>
+                            <button name="open_ga_form" type="object" string="Abrir GA" class="oe_highlight"/>
+                            <button name="open_me_form" type="object" string="Abrir ME" class="oe_highlight"/>
+                            <button name="open_pm_form" type="object" string="Abrir PM" class="oe_highlight"/>
+                        </group>
+                        <group>
+                            <!-- <button name="open_lp_form" type="object" string="Abrir LP" class="oe_highlight"/>
+                            <button name="open_ph_form" type="object" string="Abrir PH" class="oe_highlight"/> -->
+                            <field name="inf"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
         </field>
     </record>
 

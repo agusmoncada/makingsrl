@@ -89,7 +89,7 @@ class Ingreso(models.Model):
                 # Crear un registro nuevo en planilla.recepcion
                 vals = {
                     'descripcion': ingreso.seleccionar_piezas.name,
-                    'pieza': ingreso.seleccionar_piezas.id,
+                    'pieza_id': ingreso.seleccionar_piezas.id,
                     'serie': str(ingreso.numero_serie + i)  # Autocompletar número de serie
                 }
                 planilla = self.env['planilla.recepcion'].create(vals)
@@ -140,10 +140,12 @@ class PlanillaRecepcion(models.Model):
         _description = 'Planilla de Recepción e Inspección Previa de Elementos Recibidos'
 
         item = fields.Integer(string='Item')
-        pieza = fields.Integer(string='Pieza')
+        # pieza = fields.Integer(string='Pieza')
+        pieza_id = fields.Many2one('wb.student', string='Pieza')
         descripcion = fields.Char(string='Descripción')
         serie = fields.Char(string='Serie')
         precinto = fields.Char(string='Nº de Precinto')
+        le = fields.Many2one('formulario.prueba.le', string='LE: Limpieza Extremos', ondelete='cascade')
         iv = fields.Many2one('formulario.prueba.iv', string='IV: Inspección Visual', ondelete='cascade')
         ga = fields.Many2one('formulario.prueba.ga', string='GA: Inspección con Calibres', ondelete='cascade')
         me = fields.Many2one('formulario.prueba.me', string='ME: Medición de Espesores', ondelete='cascade')
@@ -152,29 +154,404 @@ class PlanillaRecepcion(models.Model):
         ph = fields.Many2one('formulario.prueba.ph', string='PH: Prueba Hidrostática', ondelete='cascade')
         inf = fields.Many2one('formulario.prueba.inf', string='INF: Informe Final', ondelete='cascade')
 
+        def open_le_form(self):
+            # Buscar un registro existente en 'formulario.prueba.le' con el mismo 'planilla_id'
+            existing_record = self.env['formulario.prueba.le'].search([
+                ('planilla_id', '=', self.id)
+            ], limit=1)
+
+            if existing_record:
+                # Si existe un registro, abrir el formulario de ese registro
+                return {
+                    'type': 'ir.actions.act_window',
+                    'name': 'LE: Limpieza Extremos',
+                    'res_model': 'formulario.prueba.le',
+                    'view_mode': 'form',
+                    'res_id': existing_record.id,
+                    'target': 'new',
+                }
+            else:
+                # Si no existe un registro, crear uno nuevo y abrir el formulario
+                return {
+                    'type': 'ir.actions.act_window',
+                    'name': 'LE: Limpieza Extremos',
+                    'res_model': 'formulario.prueba.le',
+                    'view_mode': 'form',
+                    'res_id': self.le.id,
+                    'target': 'new',
+                    'context': {
+                    'default_planilla_id': self.id,
+                    },
+                }
+            
+        def open_iv_form(self):
+            # Buscar un registro existente en 'formulario.prueba.iv' con el mismo 'planilla_id'
+            existing_record = self.env['formulario.prueba.iv'].search([
+                ('planilla_id', '=', self.id)
+            ], limit=1)
+
+            if existing_record:
+                # Si existe un registro, abrir el formulario de ese registro
+                return {
+                    'type': 'ir.actions.act_window',
+                    'name': 'IV: Inspección Visual',
+                    'res_model': 'formulario.prueba.iv',
+                    'view_mode': 'form',
+                    'res_id': existing_record.id,
+                    'target': 'new',
+                }
+            else:
+                # Si no existe un registro, crear uno nuevo y abrir el formulario
+                return {
+                    'type': 'ir.actions.act_window',
+                    'name': 'IV: Inspección Visual',
+                    'res_model': 'formulario.prueba.iv',
+                    'view_mode': 'form',
+                    'res_id': self.iv.id,
+                    'target': 'new',
+                    'context': {
+                    'default_planilla_id': self.id,
+                    },
+                }
+
+        def open_ga_form(self):
+            # Buscar un registro existente en 'formulario.prueba.le' con el mismo 'planilla_id'
+            existing_record = self.env['formulario.prueba.ga'].search([
+                ('planilla_id', '=', self.id)
+            ], limit=1)
+
+            if existing_record:
+                # Si existe un registro, abrir el formulario de ese registro
+                return {
+                    'type': 'ir.actions.act_window',
+                    'name': 'GA: Inspección con Calibres',
+                    'res_model': 'formulario.prueba.ga',
+                    'view_mode': 'form',
+                    'res_id': existing_record.id,
+                    'target': 'new',
+                }
+            else:
+                # Si no existe un registro, crear uno nuevo y abrir el formulario
+                return {
+                    'type': 'ir.actions.act_window',
+                    'name': 'GA: Inspección con Calibres',
+                    'res_model': 'formulario.prueba.le',
+                    'view_mode': 'form',
+                    'res_id': self.ga.id,
+                    'target': 'new',
+                    'context': {
+                    'default_planilla_id': self.id,
+                    },
+                }
+        def open_me_form(self):
+            # Buscar un registro existente en 'formulario.prueba.le' con el mismo 'planilla_id'
+            existing_record = self.env['formulario.prueba.me'].search([
+                ('planilla_id', '=', self.id)
+            ], limit=1)
+
+            if existing_record:
+                # Si existe un registro, abrir el formulario de ese registro
+                return {
+                    'type': 'ir.actions.act_window',
+                    'name': 'ME: Medición de Espesores',
+                    'res_model': 'formulario.prueba.me',
+                    'view_mode': 'form',
+                    'res_id': existing_record.id,
+                    'target': 'new',
+                    'context': {
+                    'default_punto_a_minimo_admisible': self.pieza_id.letra_a,
+                    'default_punto_b_minimo_admisible': self.pieza_id.letra_b,
+                    },
+                }
+            else:
+                # Si no existe un registro, crear uno nuevo y abrir el formulario
+                return {
+                    'type': 'ir.actions.act_window',
+                    'name': 'ME: Medición de Espesores',
+                    'res_model': 'formulario.prueba.me',
+                    'view_mode': 'form',
+                    'res_id': self.me.id,
+                    'target': 'new',
+                    'context': {
+                    'default_planilla_id': self.id,
+                    'default_punto_a_minimo_admisible': self.pieza_id.letra_a,
+                    'default_punto_b_minimo_admisible': self.pieza_id.letra_b,
+                    },
+                }
+
+        def open_pm_form(self):
+            # Buscar un registro existente en 'formulario.prueba.le' con el mismo 'planilla_id'
+            existing_record = self.env['formulario.prueba.pm'].search([
+                ('planilla_id', '=', self.id)
+            ], limit=1)
+
+            if existing_record:
+                # Si existe un registro, abrir el formulario de ese registro
+                return {
+                    'type': 'ir.actions.act_window',
+                    'name': 'PM: Partículas Magnetizables',
+                    'res_model': 'formulario.prueba.pm',
+                    'view_mode': 'form',
+                    'res_id': existing_record.id,
+                    'target': 'new',
+                }
+            else:
+                # Si no existe un registro, crear uno nuevo y abrir el formulario
+                return {
+                    'type': 'ir.actions.act_window',
+                    'name': 'PM: Partículas Magnetizables',
+                    'res_model': 'formulario.prueba.pm',
+                    'view_mode': 'form',
+                    'res_id': self.pm.id,
+                    'target': 'new',
+                    'context': {
+                    'default_planilla_id': self.id,
+                    },
+                }
+
+
 class InspeccionVisual(models.Model):
     _name = 'formulario.prueba.iv'
     _description = 'IV: Inspección Visual'
 
-    name = fields.Char(string='Nombre')
+    name = fields.Char(string='Nombre', related='planilla_id.descripcion', store=True)
+    estado_general = fields.Boolean(string='Estado General', default=False)
+    estado_rosca = fields.Boolean(string='Estado Rosca', default=False)
+    corrosion = fields.Boolean(string='Corrosion', default=False)
+    estado_sellos = fields.Boolean(string='Estado de los Sellos', default=False)
+    observaciones = fields.Text(string='Observaciones')
+    planilla_id = fields.Many2one('planilla.recepcion', string='Planilla Recepcion', ondelete='cascade')
+    aprobado = fields.Boolean(string='Aprobado', default=False)
+
+    def aprobar_y_siguiente(self):
+        # Alternar el estado del campo aprobado
+        self.aprobado = True
+        
+        # Buscar un registro en 'formulario.prueba.iv' con el mismo 'planilla_id'
+        iv_record = self.env['formulario.prueba.ga'].search([
+            ('planilla_id', '=', self.planilla_id.id)
+        ], limit=1)
+
+        if iv_record:
+            # Si existe un registro, abrir el formulario de ese registro
+            return {
+                'type': 'ir.actions.act_window',
+                'name': 'IV: Inspección Visual',
+                'res_model': 'formulario.prueba.ga',
+                'view_mode': 'form',
+                # 'view_type': 'form',
+                'res_id': iv_record.id,
+                'target': 'new',  # Abre en la misma ventana
+            }
+        else:
+            # Si no existe un registro, crear uno nuevo y abrir el formulario
+            return {
+                'type': 'ir.actions.act_window',
+                'name': 'IV: Inspección Visual',
+                'res_model': 'formulario.prueba.ga',
+                'view_mode': 'form',
+                # 'view_type': 'form',
+                'target': 'new',  # Abre en un modal (pop-up)
+                'context': {
+                    'default_planilla_id': self.planilla_id.id,  # Pasa el ID de planilla.recepcion al contexto
+                },
+            }
+    
+
+class LimpiezaExtremos(models.Model):
+    _name = 'formulario.prueba.le'
+    _description = 'LE: Limpieza Extremos'
+
+    name = fields.Char(string='Nombre', related='planilla_id.descripcion', store=True)
+    planilla_id = fields.Many2one('planilla.recepcion', string='Planilla Recepcion', ondelete='cascade')
+    todos = fields.Boolean(string='Todos')
+    aprobado = fields.Boolean(string='Aprobado', default=False)
+
+    def aprobar_y_siguiente(self):
+        # Alternar el estado del campo aprobado
+        self.aprobado = True
+        
+        # Buscar un registro en 'formulario.prueba.iv' con el mismo 'planilla_id'
+        iv_record = self.env['formulario.prueba.iv'].search([
+            ('planilla_id', '=', self.planilla_id.id)
+        ], limit=1)
+
+        if iv_record:
+            # Si existe un registro, abrir el formulario de ese registro
+            return {
+                'type': 'ir.actions.act_window',
+                'name': 'IV: Inspección Visual',
+                'res_model': 'formulario.prueba.iv',
+                'view_mode': 'form',
+                # 'view_type': 'form',
+                'res_id': iv_record.id,
+                'target': 'new',  # Abre en la misma ventana
+            }
+        else:
+            # Si no existe un registro, crear uno nuevo y abrir el formulario
+            return {
+                'type': 'ir.actions.act_window',
+                'name': 'IV: Inspección Visual',
+                'res_model': 'formulario.prueba.iv',
+                'view_mode': 'form',
+                # 'view_type': 'form',
+                'target': 'new',  # Abre en un modal (pop-up)
+                'context': {
+                    'default_planilla_id': self.planilla_id.id,  # Pasa el ID de planilla.recepcion al contexto
+                },
+            }
 
 class InspeccionCalibres(models.Model):
     _name = 'formulario.prueba.ga'
     _description = 'GA: Inspección con Calibres'
 
-    name = fields.Char(string='Nombre')
+    name = fields.Char(string='Nombre', related='planilla_id.descripcion', store=True)
+    estado_general = fields.Boolean(string='Estado General', default=False)
+    planilla_id = fields.Many2one('planilla.recepcion', string='Planilla Recepcion', ondelete='cascade')
+    aprobado = fields.Boolean(string='Aprobado', default=False)
+
+    def aprobar_y_siguiente(self):
+        # Alternar el estado del campo aprobado
+        self.aprobado = True
+        
+        # Buscar un registro en 'formulario.prueba.iv' con el mismo 'planilla_id'
+        iv_record = self.env['formulario.prueba.me'].search([
+            ('planilla_id', '=', self.planilla_id.id)
+        ], limit=1)
+
+        if iv_record:
+            # Si existe un registro, abrir el formulario de ese registro
+            return {
+                'type': 'ir.actions.act_window',
+                'name': 'IV: Inspección Visual',
+                'res_model': 'formulario.prueba.me',
+                'view_mode': 'form',
+                # 'view_type': 'form',
+                'res_id': iv_record.id,
+                'target': 'new',  # Abre en la misma ventana
+            }
+        else:
+            # Si no existe un registro, crear uno nuevo y abrir el formulario
+            return {
+                'type': 'ir.actions.act_window',
+                'name': 'IV: Inspección Visual',
+                'res_model': 'formulario.prueba.me',
+                'view_mode': 'form',
+                # 'view_type': 'form',
+                'target': 'new',  # Abre en un modal (pop-up)
+                'context': {
+                    'default_planilla_id': self.planilla_id.id,  # Pasa el ID de planilla.recepcion al contexto
+                },
+            }
+        
 
 class MedicionEspesores(models.Model):
     _name = 'formulario.prueba.me'
     _description = 'ME: Medición de Espesores'
 
-    name = fields.Char(string='Nombre')
+    name = fields.Char(string='Nombre', related='planilla_id.descripcion', store=True)
+    # valor_medido_punto_a = fields.Boolean(string='Valor Medido[mm]', default=False)
+    # valor_medido_punto_b = fields.Boolean(string='Estado de los Sellos', default=False)
+    observaciones = fields.Text(string='Observaciones')
+    planilla_id = fields.Many2one('planilla.recepcion', string='Planilla Recepcion', ondelete='cascade')
+    estado = fields.Selection([
+        ('borrador', 'Borrador'),
+        ('aprobado', 'Aprobado'),
+        ('rechazado', 'Rechazado')
+    ], string='Estado', default='borrador')
+
+    # Valores traídos desde otro modelo como campos computados
+    punto_a_minimo_admisible = fields.Char(string='Punto A - Minimo Adminisble[mm]')
+    punto_b_minimo_admisible = fields.Char(string='Punto A - Valor Medido[mm]')
+ 
+    # Campos para completar en el formulario
+    punto_a_valor_medido = fields.Char(string='Punto B - Minimo Adminisble[mm]')
+    punto_b_valor_medido = fields.Char(string='Punto B - Valor Medido[mm]')
+
+    def rechazar(self):
+        self.aprobado = 'rechazado'
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+
+    def aprobar_y_siguiente(self):
+        self.estado = 'aprobado'
+        
+        # Buscar un registro en 'formulario.prueba.iv' con el mismo 'planilla_id'
+        iv_record = self.env['formulario.prueba.pm'].search([
+            ('planilla_id', '=', self.planilla_id.id)
+        ], limit=1)
+
+        if iv_record:
+            # Si existe un registro, abrir el formulario de ese registro
+            return {
+                'type': 'ir.actions.act_window',
+                'name': 'IV: Inspección Visual',
+                'res_model': 'formulario.prueba.pm',
+                'view_mode': 'form',
+                # 'view_type': 'form',
+                'res_id': iv_record.id,
+                'target': 'new',  # Abre en la misma ventana
+            }
+        else:
+            # Si no existe un registro, crear uno nuevo y abrir el formulario
+            return {
+                'type': 'ir.actions.act_window',
+                'name': 'IV: Inspección Visual',
+                'res_model': 'formulario.prueba.pm',
+                'view_mode': 'form',
+                # 'view_type': 'form',
+                'target': 'new',  # Abre en un modal (pop-up)
+                'context': {
+                    'default_planilla_id': self.planilla_id.id,  # Pasa el ID de planilla.recepcion al contexto
+                },
+            }
+        
 
 class ParticulasMagnetizables(models.Model):
     _name = 'formulario.prueba.pm'
     _description = 'PM: Partículas Magnetizables'
 
-    name = fields.Char(string='Nombre')
+    name = fields.Char(string='Nombre', related='planilla_id.descripcion', store=True)
+    
+    planilla_id = fields.Many2one('planilla.recepcion', string='Planilla Recepcion', ondelete='cascade')
+    aprobado = fields.Boolean(string='Aprobado', default=False)
+
+    def aprobar_y_siguiente(self):
+        # Alternar el estado del campo aprobado
+        self.aprobado = True
+        
+        # Buscar un registro en 'formulario.prueba.iv' con el mismo 'planilla_id'
+        iv_record = self.env['formulario.prueba.lp'].search([
+            ('planilla_id', '=', self.planilla_id.id)
+        ], limit=1)
+
+        if iv_record:
+            # Si existe un registro, abrir el formulario de ese registro
+            return {
+                'type': 'ir.actions.act_window',
+                'name': 'IV: Inspección Visual',
+                'res_model': 'formulario.prueba.lp',
+                'view_mode': 'form',
+                # 'view_type': 'form',
+                'res_id': iv_record.id,
+                'target': 'new',  # Abre en la misma ventana
+            }
+        else:
+            # Si no existe un registro, crear uno nuevo y abrir el formulario
+            return {
+                'type': 'ir.actions.act_window',
+                'name': 'IV: Inspección Visual',
+                'res_model': 'formulario.prueba.lp',
+                'view_mode': 'form',
+                # 'view_type': 'form',
+                'target': 'new',  # Abre en un modal (pop-up)
+                'context': {
+                    'default_planilla_id': self.planilla_id.id,  # Pasa el ID de planilla.recepcion al contexto
+                },
+            }
+
 
 class LiquidosPenetrantes(models.Model):
     _name = 'formulario.prueba.lp'

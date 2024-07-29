@@ -10,3 +10,4 @@ access_formulario_prueba_pm,formulario.prueba.pm,model_formulario_prueba_pm,base
 access_formulario_prueba_lp,formulario.prueba.lp,model_formulario_prueba_lp,base.group_user,1,1,1,1
 access_formulario_prueba_ph,formulario.prueba.ph,model_formulario_prueba_ph,base.group_user,1,1,1,1
 access_formulario_prueba_inf,formulario.prueba.inf,model_formulario_prueba_inf,base.group_user,1,1,1,1
+access_formulario_prueba_le,formulario.prueba.le,model_formulario_prueba_le,base.group_user,1,1,1,1
