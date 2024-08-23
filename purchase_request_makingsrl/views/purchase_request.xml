@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_purchase_request_tree_inherit">
+            <field name="name">view_purchase_request_tree_inherit</field>
+            <field name="model">purchase.request</field>
+            <field name="inherit_id" ref="purchase_request.view_purchase_request_tree"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="after">
+                    <field name="category"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_purchase_request_form_inherit">
+            <field name="name">view_purchase_request_form_inherit</field>
+            <field name="model">purchase.request</field>
+            <field name="inherit_id" ref="purchase_request.view_purchase_request_form"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="after">
+                    <field name="category"/>
+                </field>
+                <field name="name" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_purchase_request_search_inherit">
+            <field name="name">view_purchase_request_search_inherit</field>
+            <field name="model">purchase.request</field>
+            <field name="inherit_id" ref="purchase_request.view_purchase_request_search"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="category"/>
+                </field>
+
+                <filter name="source" position="after">
+                    <filter name="category" string="Category" context="{'group_by':'category'}"/>
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</odoo>

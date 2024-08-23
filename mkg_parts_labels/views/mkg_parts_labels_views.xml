@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="mkg_parts_labels_view_form" model="ir.ui.view">
+            <field name="name">mkg.parts.labels.view.form</field>
+            <field name="model">mkg.parts.labels</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <!-- Agrega otros campos según sea necesario -->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="mkg_parts_labels_view_tree" model="ir.ui.view">
+            <field name="name">mkg.parts.labels.view.tree</field>
+              <field name="model">mkg.parts.labels</field>
+              <field name="arch" type="xml">
+                <tree>
+                  <field name="name" />
+                  <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mkg_parts_labels_action_window" model="ir.actions.act_window">
+            <field name="name">Making Parts Labels </field>
+            <field name="res_model">mkg.parts.labels</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="mkg_parts_labels_menu"
+                name="Making Parts Labels "
+		            action="mkg_parts_labels_action_window"
+                parent="student.wb_student_sub_root_menu"
+                sequence="10"/>
+</odoo>

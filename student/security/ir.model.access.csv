@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wb_student,wb.student,model_wb_student,base.group_user,1,1,1,1
+access_ingreso,ingreso,model_ingreso,base.group_user,1,1,1,1
+access_wb_detail,wb.detail,model_wb_detail,base.group_user,1,1,1,1
+access_planilla_recepcion,planilla.recepcion,model_planilla_recepcion,base.group_user,1,1,1,1
+access_formulario_prueba_iv,formulario.prueba.iv,model_formulario_prueba_iv,base.group_user,1,1,1,1
+access_formulario_prueba_ga,formulario.prueba.ga,model_formulario_prueba_ga,base.group_user,1,1,1,1
+access_formulario_prueba_me,formulario.prueba.me,model_formulario_prueba_me,base.group_user,1,1,1,1
+access_formulario_prueba_pm,formulario.prueba.pm,model_formulario_prueba_pm,base.group_user,1,1,1,1
+access_formulario_prueba_lp,formulario.prueba.lp,model_formulario_prueba_lp,base.group_user,1,1,1,1
+access_formulario_prueba_ph,formulario.prueba.ph,model_formulario_prueba_ph,base.group_user,1,1,1,1
+access_formulario_prueba_inf,formulario.prueba.inf,model_formulario_prueba_inf,base.group_user,1,1,1,1
+access_formulario_prueba_le,formulario.prueba.le,model_formulario_prueba_le,base.group_user,1,1,1,1

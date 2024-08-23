@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mkg_we_send_search" model="ir.ui.view">
+        <field name="name">mkg.we.send.search</field>
+        <field name="model">mkg.we.send</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="description"/>
+                <!-- Agrega otros campos de búsqueda si es necesario -->
+            </search>
+        </field>
+    </record>
+
+        <record id="mkg_we_send_view_form" model="ir.ui.view">
+            <field name="name">mkg.we.send.view.form</field>
+            <field name="model">mkg.we.send</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_selected_invoice" string="Ver Factura" type="object" icon="fa-external-link" invisible="invoice_number_selector == False"/>
+                            <button name="action_view_source_sale_orders" string="Ver Cotizacion" type="object" icon="fa-external-link" invisible="sale_order_id == False"/>
+                        </div>
+                        <group>
+                            <!-- Aquí se muestra el estado -->
+                            <field name="state" widget="statusbar" statusbar_visible="draft,invoiced,lost,cancelled"/>
+                        </group>
+                        <group>
+                            <!-- Aquí se muestra el estado como campo seleccionable editable -->
+                            <field name="state" default="draft"/>
+                        </group>
+                        <group>
+                            <field name="description" readonly="1"/>
+                            <!-- <field name="name"/> -->
+                            <!-- <field name="invoice_number"/> -->
+                             <field name="invoice_number_selector"/>
+                             <field name="sale_order_id"/>
+                             <field name="client_id"/>
+                            <!-- Agrega otros campos según sea necesario -->
+                        </group>
+                        <notebook>
+                        <page string="Tareas Relacionadas">
+                            <!-- Campo Many2many que muestra las tareas en una vista de lista -->
+                            <field name="task_ids">
+                                <tree>
+                                    <!-- <field name="name"/> -->
+                                    <field name="partner_id"/>
+                                    <field name="project_id"/>
+                                    <field name="user_ids" widget="many2many_tags"/>
+                                    <field name="effective_hours"/>
+                                    <field name="activity_ids" widget="many2many_tags"/>
+                                    <field name="create_date"/>
+                                    <field name="date_last_stage_update"/>
+                                    <field name="stage_id"/>
+                                    <!-- <field name="kanban_state" widget="kanban_state_selection"/> -->
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="mkg_we_send_view_tree" model="ir.ui.view">
+            <field name="name">mkg.we.send.view.tree</field>
+              <field name="model">mkg.we.send</field>
+              <field name="arch" type="xml">
+                <tree default_order="description desc">
+                  <field name="description"/>
+                  <field name="client_id"/>
+                     <field name="task_ids" widget="many2many_tags"/>
+                  <!-- <field name="name"/> -->
+                  <!-- <field name="invoice_number"/> -->
+                  <field name="invoice_number_selector"/>
+                  <field name="sale_order_id"/>
+                  <field name="create_date"/>
+                  <field name="state" widget="badge"/>
+                  <field name="days_since_creation"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mkg_we_send_action_window" model="ir.actions.act_window">
+            <field name="name">Making We Send</field>
+            <field name="res_model">mkg.we.send</field>
+            <field name="view_mode">pivot,kanban,tree,form</field>
+        </record>
+
+        <menuitem id="mkg_we_send_menu"
+                name="Making We Send"
+		            action="mkg_we_send_action_window"
+                parent="project.menu_main_pm"
+                sequence="99"/>
+
+        <record id="view_sequence_form_range" model="ir.ui.view">
+            <field name="name">view.sequence.form.range</field>
+            <field name="model">ir.sequence</field>
+            <field name="inherit_id" ref="base.sequence_view"/>
+            <field name="arch" type="xml">
+                <field name="use_date_range" position="after">
+                    <field name="min_range"/>
+                    <field name="max_range"/>
+                </field>
+            </field>
+        </record>
+        <!-- Pivot View for MKG We Send -->
+        <record id="view_mkg_we_send_pivot" model="ir.ui.view">
+            <field name="name">mkg.we.send.pivot</field>
+            <field name="model">mkg.we.send</field>
+            <field name="arch" type="xml">
+                <pivot string="MKG We Send">
+                    <field name="name" type="row"/>
+                    <field name="state" type="col"/>
+                    <field name="days_since_creation" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+         <!-- Kanban View for MKG We Send -->
+        <record id="view_mkg_we_send_kanban" model="ir.ui.view">
+            <field name="name">mkg.we.send.kanban</field>
+            <field name="model">mkg.we.send</field>
+            <field name="arch" type="xml">
+                <kanban string="MKG We Send" default_group_by="state">
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click oe_kanban_card oe_kanban_card_color_#{kanban_getcolor(record.state.raw_value)}">
+                                <div class="oe_kanban_details">
+                                    <strong><field name="name"/></strong>
+                                    <div><field name="client_id"/></div>
+                                    <div><field name="invoice_number"/></div>
+                                    <div><field name="days_since_creation"/> days since creation</div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+</odoo>

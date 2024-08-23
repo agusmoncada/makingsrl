@@ -1,0 +1,153 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mkg_we_send
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-11 05:15+0000\n"
+"PO-Revision-Date: 2024-06-11 05:15+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mkg_we_send
+#: model:ir.model.fields.selection,name:mkg_we_send.selection__mkg_we_send__state__cancelled
+msgid "Anulado"
+msgstr ""
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__client_id
+msgid "Client"
+msgstr "Cliente"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__description
+msgid "Description"
+msgstr "Descripcion"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__display_name
+msgid "Display Name"
+msgstr "Numero de Factura"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__state
+msgid "Estado"
+msgstr ""
+
+#. module: mkg_we_send
+#: model:ir.model.fields.selection,name:mkg_we_send.selection__mkg_we_send__state__invoiced
+msgid "Facturado"
+msgstr ""
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__id
+msgid "ID"
+msgstr ""
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__invoice_number_selector
+msgid "Invoice"
+msgstr "Numero de Factura"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__invoice_number
+msgid "Invoice Number"
+msgstr "Numero de Factura"
+
+#. module: mkg_we_send
+#: model:ir.model,name:mkg_we_send.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__write_uid
+msgid "Last Updated by"
+msgstr "Ultima Actualizacion por"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__write_date
+msgid "Last Updated on"
+msgstr "Ultima Actualizacion el"
+
+#. module: mkg_we_send
+#: model:ir.actions.act_window,name:mkg_we_send.mkg_we_send_action_window
+#: model:ir.model,name:mkg_we_send.model_mkg_we_send
+#: model:ir.ui.menu,name:mkg_we_send.mkg_we_send_menu
+msgid "Making We Send"
+msgstr "Remitos"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_ir_sequence__max_range
+msgid "Maximum Range"
+msgstr "Maximo Rango"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_ir_sequence__min_range
+msgid "Minimum Range"
+msgstr "Rango Minimo"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: mkg_we_send
+#: model:ir.model.fields.selection,name:mkg_we_send.selection__mkg_we_send__state__draft
+msgid "Para Facturar"
+msgstr ""
+
+#. module: mkg_we_send
+#: model:ir.model.fields.selection,name:mkg_we_send.selection__mkg_we_send__state__lost
+msgid "Perdido"
+msgstr ""
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_account_bank_statement_line__mkg_we_send_ids
+#: model:ir.model.fields,field_description:mkg_we_send.field_account_move__mkg_we_send_ids
+#: model:ir.model.fields,field_description:mkg_we_send.field_account_payment__mkg_we_send_ids
+#: model:ir.model.fields,field_description:mkg_we_send.field_project_task__mkg_we_send_ids
+#: model_terms:ir.ui.view,arch_db:mkg_we_send.account_move_form_we_send
+#: model_terms:ir.ui.view,arch_db:mkg_we_send.project_task_form_we_send
+msgid "Remitos Asociados"
+msgstr "Remitos"
+
+#. module: mkg_we_send
+#: model:ir.model,name:mkg_we_send.model_ir_sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: mkg_we_send
+#: model_terms:ir.ui.view,arch_db:mkg_we_send.mkg_we_send_view_form
+msgid "Tareas Relacionadas"
+msgstr ""
+
+#. module: mkg_we_send
+#: model:ir.model,name:mkg_we_send.model_project_task
+msgid "Task"
+msgstr "Tarea"
+
+#. module: mkg_we_send
+#: model:ir.model.fields,field_description:mkg_we_send.field_mkg_we_send__task_ids
+msgid "Tasks"
+msgstr "Órdenes de Trabajo"
+
+#. module: mkg_we_send
+#: model_terms:ir.ui.view,arch_db:mkg_we_send.mkg_we_send_view_form
+msgid "Ver Factura"
+msgstr ""

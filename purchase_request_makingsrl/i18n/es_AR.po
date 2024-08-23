@@ -1,0 +1,27 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_request_makingsrl
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-22 11:53+0000\n"
+"PO-Revision-Date: 2024-08-22 11:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_request_makingsrl
+#: model:ir.model.fields,field_description:purchase_request_makingsrl.field_purchase_request__category
+#: model_terms:ir.ui.view,arch_db:purchase_request_makingsrl.view_purchase_request_search_inherit
+msgid "Category"
+msgstr "Categoria"
+
+#. module: purchase_request_makingsrl
+#: model:ir.model,name:purchase_request_makingsrl.model_purchase_request
+msgid "Purchase Request"
+msgstr "Solicitud de compra"

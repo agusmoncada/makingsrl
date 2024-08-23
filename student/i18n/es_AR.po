@@ -1,0 +1,133 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* student
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-04 03:28+0000\n"
+"PO-Revision-Date: 2024-06-04 03:28+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_detail__create_uid
+#: model:ir.model.fields,field_description:student.field_wb_student__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_detail__create_date
+#: model:ir.model.fields,field_description:student.field_wb_student__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_student__descripcion_opcional
+msgid "Descripcion Opcional"
+msgstr ""
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_detail__description
+msgid "Description"
+msgstr "Descripcion"
+
+#. module: student
+#: model:ir.model,name:student.model_wb_detail
+msgid "Detail"
+msgstr "Detalles"
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_student__detail_ids
+msgid "Details"
+msgstr "Detalles"
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_student__diametro
+msgid "Diametro"
+msgstr ""
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_detail__display_name
+#: model:ir.model.fields,field_description:student.field_wb_student__display_name
+msgid "Display Name"
+msgstr "Nombre"
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_student__fig
+msgid "Fig"
+msgstr ""
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_detail__id
+#: model:ir.model.fields,field_description:student.field_wb_student__id
+msgid "ID"
+msgstr ""
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_student__image
+msgid "Image"
+msgstr ""
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_detail__write_uid
+#: model:ir.model.fields,field_description:student.field_wb_student__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_detail__write_date
+#: model:ir.model.fields,field_description:student.field_wb_student__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_student__marca
+msgid "Marca"
+msgstr ""
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_detail__name
+#: model:ir.model.fields,field_description:student.field_wb_student__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: student
+#: model:ir.actions.act_window,name:student.wb_student_action
+msgid "Piezas"
+msgstr "Piezas"
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_student__second_image
+msgid "Second Image"
+msgstr "Figura"
+
+#. module: student
+#: model:ir.ui.menu,name:student.wb_student_root_menu
+msgid "Student"
+msgstr "Informes"
+
+#. module: student
+#: model:ir.ui.menu,name:student.wb_student_menu
+msgid "Student List"
+msgstr "Etiquetas de Piezas"
+
+#. module: student
+#: model:ir.model,name:student.model_wb_student
+msgid "This is student profile."
+msgstr ""
+
+#. module: student
+#: model:ir.model.fields,field_description:student.field_wb_student__tipo
+msgid "Tipo"
+msgstr ""
+
+#. module: student
+#: model:ir.ui.menu,name:student.wb_student_sub_root_menu
+msgid "Weblearns"
+msgstr "Piezas"
